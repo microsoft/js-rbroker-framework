@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>Example using a Discrete Task Broker</title>
+   <script src="../../../browser/rbroker.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+   <h1>Example using a Discrete Task Broker</h1>
+   <hr>
+   <ol>
+      <li>Populate <strong>/examples/config.json</strong> with the proper values before running.</li>
+      <li>Open the browser's debug window to view print logs for this example.</li>
+      <li>View <a href="http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc/">documentation</a> for more information.</li>
+   </ol>
+
+   <a href="#" class="ga-track">Some value 1</a>
+   <a href="#" class="ga-track">Some value 2</a>
+
+</body>
+<script>
+   /*
+    * Copyright (C) 2010-2014 by Revolution Analytics Inc.
+    *
+    * This program is licensed to you under the terms of Version 2.0 of the
+    * Apache License. This program is distributed WITHOUT
+    * ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT,
+    * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
+    * Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0) for more 
+    * details.
+    */
+   (function(rbroker) {
+
+      function run(config) {
+
+           /*
+            * 1. Create RBroker instance using RBrokerFactory.
+            *
+            * This example creates a DiscreteTaskBroker.
+            */
+            var brokerConfig = {
+               maxConcurrentTaskLimit: 4700,
+               host: config.host,
+               cors: config.cors,
+               credentials: config.credentials
+            };
+
+            /* 
+             * .complete|.error|.progress|.idel are sugar methods for: 
+             * -------------------------------------------------------
+             * .on('complete', fn)
+             * .on('error', fn);
+             * .on('progress', fn)
+             * .on('idel'), fn)
+             */
+            var dBroker = rbroker.discreteTaskBroker(brokerConfig)
+               .complete(function(rTask, rTaskResult) {
+                  console.log('[completed]----------------------------------------');
+                  console.log(rTask);
+                  console.log(rTaskResult);
+                  console.log('---------------------------------------------------');
+               })
+               .error(function(err) {
+                  console.log('[error]--------------------------------------------');
+                  console.log(err);
+                  console.log('---------------------------------------------------');
+               })
+               .progress(function(status) {
+                  console.log('[progress]-----------------------------------------');
+                  console.log(status + '');
+                  console.log('---------------------------------------------------');
+               })
+               .idle(function() { // nothing pending
+                  dBroker.shutdown()
+                     .then(function() {
+                        console.log('Discrete: RBroker shutdown `successful`.');
+                     }, function() {
+                        console.log('Discrete: RBroker has shutdown `failure`.');
+                     });
+               });
+
+            /*
+             * 2. Define RTask(2)
+             *
+             * This example creates 7 DiscreteTasks that will execute an R script:
+             * /testuser/root/DeployR - Hello World.R
+             */
+            var props = {
+               filename: config.constants.TUTORIAL_NOOP_SCRIPT,
+               directory: config.constants.TUTORIAL_REPO_DIRECTORY,
+               author: config.constants.TUTORIAL_REPO_OWNER
+            };
+
+            var rTask1 = rbroker.discreteTask(props);
+            var rTask2 = rbroker.discreteTask(props);
+            var rTask3 = rbroker.discreteTask(props);
+            var rTask4 = rbroker.discreteTask(props);
+            var rTask5 = rbroker.discreteTask(props);
+            var rTask6 = rbroker.discreteTask(props);
+            var rTask7 = rbroker.discreteTask(props);
+            var rTask8 = rbroker.discreteTask(props);
+            var rTask9 = rbroker.discreteTask(props);
+            var rTask10 = rbroker.discreteTask(props);
+            var rTask11 = rbroker.discreteTask(props);
+
+            /*
+             *
+             * 3. Submit RTasks to RBroker for execution.
+             *
+             * The `Task Worker` is returned immediately. You can use the returned token to
+             * bind to it's task lifecycle (complete|error|ensure), an example of this is
+             * the rTask7 task submittal.
+             */
+            dBroker.submit(rTask1, false);
+            dBroker.submit(rTask2, false);
+            dBroker.submit(rTask3, false);
+            dBroker.submit(rTask4, false);
+            dBroker.submit(rTask5, false);
+            dBroker.submit(rTask6, false);
+            dBroker.submit(rTask7, false);
+            dBroker.submit(rTask8, false);
+            dBroker.submit(rTask9, false);
+            dBroker.submit(rTask10, false); 
+
+            // -- Listen for indifidual task --
+            dBroker.submit(rTask11, false)
+               .complete(function(res) {
+                  var rTask       = res.task,
+                      rTaskResult = res.result;
+
+                  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ Individual TASK completed');
+                  console.log(rTask);
+                  console.log(rTaskResult);
+                  console.log('----------------------------------------------------');
+               })
+               .error(function(err) {
+                  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Individual TASK error');
+                  console.log(err);
+                  console.log('----------------------------------------------------');
+               })
+               .ensure(function() {
+                  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Individual TASK ensure');
+                  console.log(rTask7);
+                  console.log('----------------------------------------------------');
+               });
+
+            // Print
+            console.log('Discrete Task: submitted ' + rTask1 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask2 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask3 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask4 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask5 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask6 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask7 + ' for execution on RBroker');
+         }
+
+      // -- load configuration and run example --a
+      $.getJSON('/examples/config.json').done(function(config) {
+         run(config);
+      });
+
+   })(window.rbroker);
+</script>
+
+</html>

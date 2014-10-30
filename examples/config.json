@@ -1,0 +1,15 @@
+{
+	"host": "http://localhost:7300",
+	"cors": true,
+	"credentials": {
+	   "username": "testuser",
+	   "password": "changeme"
+	},
+	"constants" : {
+		"TUTORIAL_REPO_OWNER": "testuser",
+		"TUTORIAL_REPO_DIRECTORY":  "tutorial-rbroker",
+		"TUTORIAL_NOOP_SCRIPT": "5SecondNoOp.R",
+		"TUTORIAL_RTSCORE_SCRIPT": "rtScore.R",
+		"TUTORIAL_INSURANCE_MODEL": "insurModel.rData"
+	}
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>Example using a Pooled Simulation</title>
+   <script src="../../../browser/rbroker.js"></script>
+   <script src="../../utils/rbroker-stats-helper.js"></script> 
+   <script src="../simulations/browser/scoring-engine-simulation.js"></script> 
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+   <h1>Example using a Pooled Simulation</h1>
+   <hr>
+   <ol>
+      <li>Populate <strong>/examples/config.json</strong> with the proper values before running.</li>
+      <li>Open the browser's debug window to view print logs for this example.</li>
+      <li>View <a href="http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc/">documentation</a> for more information.</li>
+   </ol>
+</body>
+<script>
+   /*
+    * Copyright (C) 2010-2014 by Revolution Analytics Inc.
+    *
+    * This program is licensed to you under the terms of Version 2.0 of the
+    * Apache License. This program is distributed WITHOUT
+    * ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT,
+    * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
+    * Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0) for more 
+    * details.
+    */
+   (function(rbroker, ScoringEngineSimulation, printHelper) { 
+
+      function run(config) {
+            var DEMO6_TARGET_POOL_SIZE = 10;
+
+            /*
+             * 1. Prepare 'Pooled Broker Configuration' instance.
+             *
+             * This example creates an authenticated `PooledTaskBroker`
+             * to act as our scoring engine.
+             *
+             * The following steps initialize the pool of
+             * R sessions dedicated to our scoring engine.
+             *
+             * In this example, we pre-initialize the workspace
+             * for each R session in the pool to contain the
+             * R model used when scoring customer requests.
+             *
+             * The R model, insurModel.rData, is loaded from
+             * the DeployR repository into each workspace at
+             * startup time. Preloading the R model at startup
+             * reduces runtime overhead and improves overall
+             * response times in the application.
+             */            
+
+            var brokerConfig = {
+              maxConcurrentTaskLimit: DEMO6_TARGET_POOL_SIZE,
+              host: config.host,
+              cors: config.cors,
+              credentials: config.credentials,
+              releaseGridResources: false,
+              logging: false,
+              // --- pool options ---
+              // For all `pool` option parameters:
+              // @see http://deployr.revolutionanalytics.com/documents/dev/api-doc/guide/workingprojects.html#projectpool
+              pool: {
+                preloadobjectname: config.constants.TUTORIAL_INSURANCE_MODEL,
+                preloadobjectauthor: config.constants.TUTORIAL_REPO_OWNER,
+                preloadobjectdirectory: config.constants.TUTORIAL_REPO_DIRECTORY
+              }
+            };
+        
+            /*
+             * 2. Create RBroker instance.
+             *
+             * The application designer, in conjunction with the
+             * DeployR administrator who provisions and sets
+             * limits on DeployR grid resources, need to decide how
+             * many R sessions will be reserved for the `PooledRBroker`
+             * used by our scoring engine application.
+             */
+
+             console.log('About to create pooledTaskBroker.');
+
+             var pBroker = rbroker.pooledTaskBroker(brokerConfig);
+
+             console.log('R session pool size, requested: ' +
+                    DEMO6_TARGET_POOL_SIZE + ' , actual: ' +
+                    pBroker.maxConcurrency() + '\n');
+
+            /*
+             * 3. Create an `RTaskAppSimulator`. It will drive
+             * sample customer data scoring requests through the
+             * RBroker.
+             */
+
+            var simulation = new ScoringEngineSimulation(config);
+
+            /*
+             * 4. Launch RTaskAppSimulator simulation.
+             */
+            pBroker.simulateApp(simulation);
+      }
+
+      // -- load configuration and run example --
+      $.getJSON('/examples/config.json').done(function(config) {
+         run(config);
+      });
+
+   })(window.rbroker, window.ScoringEngineSimulation, window.printHelper);
+</script>
+
+</html>
