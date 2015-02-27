@@ -5,7 +5,7 @@
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
    <title>Example using a Background Task Broker</title>
-   <script src="../../../browser/rbroker.js"></script>
+   <script src="../../rbroker.min.js"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
@@ -65,7 +65,7 @@
             })
             .progress(function(status) {
                console.log('[progress]-----------------------------------------');
-               console.log(status + '');
+               console.log(status);
                console.log('---------------------------------------------------');
             })
             .idle(function() { // nothing pending 
@@ -141,7 +141,7 @@
       }
 
       // -- load configuration and run example --
-      $.getJSON('/examples/config.json').done(function(config) {
+      $.getJSON('/config.json').done(function(config) {
          run(config);
       });
 

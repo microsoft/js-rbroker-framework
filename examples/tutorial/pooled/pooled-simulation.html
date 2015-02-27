@@ -5,7 +5,7 @@
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
    <title>Example using a Pooled Simulation</title>
-   <script src="../../../browser/rbroker.js"></script>
+   <script src="../../rbroker.min.js"></script>
    <script src="../../utils/rbroker-stats-helper.js"></script> 
    <script src="../simulations/browser/scoring-engine-simulation.js"></script> 
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -106,7 +106,7 @@
       }
 
       // -- load configuration and run example --
-      $.getJSON('/examples/config.json').done(function(config) {
+      $.getJSON('/config.json').done(function(config) {
          run(config);
       });
 

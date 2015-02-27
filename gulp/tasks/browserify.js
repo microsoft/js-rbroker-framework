@@ -13,7 +13,7 @@ var browserify = require('browserify'),
     gulp       = require('gulp'),
     source     = require('vinyl-source-stream'),
     plumber    = require('gulp-plumber'), 
-    onError    = require('../util/handleErrors'),    
+    onError    = require('../util/errors'),    
     config     = require('../config');
 
 /*
@@ -22,9 +22,9 @@ var browserify = require('browserify'),
  * Runs `browserify` on the `deployr` source.
  */
 gulp.task('browserify', function() {		
-	return browserify({ entries: ['./' + config.name + '.js'] })	  
+	return browserify({ debug: true, standalone: config.name, entries: ['./' + config.name + '.js'] })	  
 	       .ignore('http')
-	       .bundle({debug: true, standalone: config.name })
+	       .bundle()	       
 	       .pipe(plumber({ errorHandler: onError}))
 	       .pipe(source(config.name + '.js'))		
 	       .pipe(gulp.dest(config.dist));

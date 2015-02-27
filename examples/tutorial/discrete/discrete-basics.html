@@ -5,7 +5,7 @@
    <meta charset="utf-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
    <title>Example using a Discrete Task Broker</title>
-   <script src="../../../browser/rbroker.js"></script>
+   <script src="../../rbroker.min.js"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
@@ -17,10 +17,6 @@
       <li>Open the browser's debug window to view print logs for this example.</li>
       <li>View <a href="http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc/">documentation</a> for more information.</li>
    </ol>
-
-   <a href="#" class="ga-track">Some value 1</a>
-   <a href="#" class="ga-track">Some value 2</a>
-
 </body>
 <script>
    /*
@@ -71,7 +67,7 @@
                })
                .progress(function(status) {
                   console.log('[progress]-----------------------------------------');
-                  console.log(status + '');
+                  console.log(status);
                   console.log('---------------------------------------------------');
                })
                .idle(function() { // nothing pending
@@ -159,7 +155,7 @@
          }
 
       // -- load configuration and run example --a
-      $.getJSON('/examples/config.json').done(function(config) {
+      $.getJSON('/config.json').done(function(config) {
          run(config);
       });
 

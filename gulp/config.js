@@ -16,6 +16,7 @@ module.exports = {
 	port: '8080',
 	root: path.resolve('./'),
 	dist: './browser',
+	d: 'browser', //path.resolve('./browser'),
 	name: pkg.name,
 	pkg: pkg
 };
