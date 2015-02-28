@@ -12,7 +12,7 @@
 var gulp    = require('gulp'),
     uglify  = require('gulp-uglifyjs'),
     plumber = require('gulp-plumber'),
-    onError = require('../util/handleErrors'),      
+    onError = require('../util/errors'),      
     config  = require('../config');
 
 /*

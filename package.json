@@ -1,51 +1,54 @@
 {
-   "name": "rbroker",
-   "version": "7.3.0",
-   "description": "JavaScript RBroker Framework for DeployR",
-   "keywords": [
-      "deployr",
-      "deployr.io",
-      "rbroker",
-      "ajax",
-      "R",
-      "api",
-      "simple"
-   ],
-   "author": "DeployR - Revolution Analytics",
-   "contributors": [{
+  "name": "rbroker",
+  "version": "7.3.0",
+  "description": "JavaScript RBroker Framework for DeployR",
+  "keywords": [
+    "deployr",
+    "deployr.io",
+    "rbroker",
+    "ajax",
+    "R",
+    "api",
+    "simple"
+  ],
+  "author": "DeployR - Revolution Analytics",
+  "contributors": [
+    {
       "name": "Sean Wells"
-   }],
-   "repository": {
-      "type": "git",
-      "url": "git://github.com/deployr/js-rbroker-framework.git"
-   },
-   "homepage": "http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc",
-   "scripts": {
-      "start": "gulp start"
-   },
-   "devDependencies": {
-      "browserify-shim": "~3.4.1",
-      "browserify": "~3.36.0",
-      "vinyl-source-stream": "~0.1.1",
-      "connect": "~2.14.3",
-      "gulp": "^3.8.8",
-      "gulp-uglifyjs": "~0.4.2",
-      "gulp-plumber": "~0.6.4",
-      "gulp-util": "~2.2.20",
-      "gulp-livereload": "~2.1.0",
-      "gulp-jshint": "^1.7.1",
-      "gulp-header": "^1.1.1"
-   },
-   "dependencies": {
-      "deployr": "~7.3.0",
-      "enum": "~0.2.6",
-      "selfish": "~0.3.2",
-      "merge": "~1.1.3",
-      "when": "^3.4.0"
-   },
-   "main": "rbroker.js",
-   "engines": {
-      "node": ">= 0.10.0"
-   },
-   "license": "Apache 2.0 License"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deployr/js-rbroker-framework.git"
+  },
+  "homepage": "http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc",
+  "scripts": {
+    "start": "node node_modules/gulp/bin/gulp.js start",
+    "build": "node node_modules/gulp/bin/gulp.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "gulp": "^3.8.11",
+    "gulp-connect": "^2.2.0",    
+    "gulp-header": "^1.2.2",
+    "gulp-jshint": "^1.9.2",
+    "gulp-livereload": "^3.8.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-uglifyjs": "^0.6.0",
+    "gulp-util": "^3.0.4",
+    "vinyl-source-stream": "~0.1.1"
+  },
+  "dependencies": {
+    "deployr": "^7.3.0",
+    "enum": "^0.2.6",
+    "merge": "^1.1.3",
+    "selfish": "^0.3.2",
+    "when": "^3.4.0"
+  },
+  "main": "rbroker.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "license": "Apache 2.0 License"
 }

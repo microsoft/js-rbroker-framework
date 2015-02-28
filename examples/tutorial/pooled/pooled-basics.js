@@ -60,7 +60,7 @@ var pBroker = rbroker.pooledTaskBroker(brokerConfig)
     })
     .progress(function (status) {
         console.log('[progress]-----------------------------------------');
-        console.log(status + '');
+        console.log(status);
         console.log('---------------------------------------------------');
     })
     .idle(function () { // nothing pending 

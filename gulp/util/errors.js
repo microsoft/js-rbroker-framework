@@ -8,9 +8,9 @@
  * Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0) for more 
  * details.
  */
- 
-var path = require("path");
 
-module.exports = function(name) {
-    return /(\.(js|coffee)$)/i.test(path.extname(name));
+var notify = require('gulp-util');
+
+module.exports = function(err) {	
+	gutil.log(gutil.colors.green(err));
 };

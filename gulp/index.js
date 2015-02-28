@@ -10,7 +10,7 @@
  */
  
 var fs        = require('fs'),
-    whitelist = require('./util/scriptFilter'),
+    whitelist = require('./util/script-filter'),
     tasks     = fs.readdirSync('./gulp/tasks/').filter(whitelist);
 
 tasks.forEach(function(task) {

@@ -9,9 +9,9 @@
  * details.
  */
 
-var gulp    = require('gulp'),
-    jshint  = require("gulp-jshint"),    
-    config  = require('../config');
+var gulp   = require('gulp'),
+    jshint = require("gulp-jshint"),    
+    config = require('../config');
     
 /*
  * Task: jshist
