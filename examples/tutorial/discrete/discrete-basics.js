@@ -103,7 +103,8 @@ dBroker.submit(rTask5, false);
 dBroker.submit(rTask6, false);
 // -- Listen for indifidual task --
 dBroker.submit(rTask7, false)
-    .complete(function (res) {
+    .promise()
+    .then(function (res) {
        var rTask       = res.task,
            rTaskResult = res.result;
 
