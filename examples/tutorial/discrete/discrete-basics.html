@@ -39,7 +39,7 @@
             * This example creates a DiscreteTaskBroker.
             */
             var brokerConfig = {
-               maxConcurrentTaskLimit: 4700,
+               maxConcurrentTaskLimit: 10,
                host: config.host,
                cors: config.cors,
                credentials: config.credentials
@@ -124,7 +124,8 @@
 
             // -- Listen for indifidual task --
             dBroker.submit(rTask11, false)
-               .complete(function(res) {
+               .promise()
+               .then(function(res) {
                   var rTask       = res.task,
                       rTaskResult = res.result;
 
@@ -140,7 +141,7 @@
                })
                .ensure(function() {
                   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Individual TASK ensure');
-                  console.log(rTask7);
+                  console.log(rTask11);
                   console.log('----------------------------------------------------');
                });
 
@@ -152,6 +153,10 @@
             console.log('Discrete Task: submitted ' + rTask5 + ' for execution on RBroker');
             console.log('Discrete Task: submitted ' + rTask6 + ' for execution on RBroker');
             console.log('Discrete Task: submitted ' + rTask7 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask8 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask9 + ' for execution on RBroker');
+            console.log('Discrete Task: submitted ' + rTask10 + ' for execution on RBroker');                        
+            console.log('Discrete Task: submitted ' + rTask11 + ' for execution on RBroker');            
          }
 
       // -- load configuration and run example --a

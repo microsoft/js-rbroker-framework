@@ -18,7 +18,7 @@ var gulp    = require('gulp'),
  *
  * Run a webserver for viewing ./examples HTML samples (with LiveReload)
  */
-gulp.task('connect', function() {
+gulp.task('connect', ['build'], function() {
     connect.server({
         root: [config.root +'/examples/', config.dist],
         port: config.port,
@@ -29,5 +29,5 @@ gulp.task('connect', function() {
     gulp.watch([config.name + '.js', './lib/**/*.js'], ['build']);
 
     // Watch Examples that use HTML and livereload
-    gulp.watch('./examples/**/*.html', ['html']);
+    gulp.watch('./examples/**/*.html', ['build']);
 });

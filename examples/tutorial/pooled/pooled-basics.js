@@ -125,7 +125,8 @@ pBroker.submit(rTask4, false);
 pBroker.submit(rTask5, false);
 pBroker.submit(rTask6, false);
 pBroker.submit(rTask7, false)
-    .complete(function (res) {
+    .promise()
+    .then(function (res) {
         var rTask       = res.task,
             rTaskResult = res.result;
 

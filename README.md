@@ -9,17 +9,29 @@ _RBroker_ and then retrieve your task results. It really is that simple.
 Links
 -----
 
-  * [Download](http://deployr.revolutionanalytics.com/docanddown/#rbroker)
+  * [Download](#downloading)
   * [Tutorial](http://deployr.revolutionanalytics.com/documents/dev/rbroker/)
-  * [API Documentation](http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc)
-  * [Installation](#installationl)  
+  * [API Documentation](http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc)    
   * [Simple examples](#examples)
   * [Gulp, for building](#building)
   * [Tests](#tests)
   * [License](#license)
 
+Downloading
+============
+
+There are a few diffrent was to obtaining the library depending on your 
+environment and intended usage:
+
+- `$ npm install rbroker` dependent on [Node.js](http://nodejs.org/download/)
+- `$ git clone https://github.com/deployr/js-rbroker-framework.git`
+- [Download Zip](https://github.com/deployr/js-rbroker-framework/archive/master.zip)
+- Download specific [release](https://github.com/deployr/js-rbroker-framework/releases)
+
 Environments
 ============
+
+- Browser and Node.js
 
 We recommend you [download and install](http://nodejs.org/download/) Node.js.
 It is __not__ a requirement for the browser however using the JavaScript client 
@@ -29,7 +41,7 @@ can be powerful!
 Browser
 -------
 
-If your environment is the browser the JavaScript RBroker Framework can be found
+If your environment is the browser the JavaScript client library can be found
 here:
 
 ```
@@ -44,15 +56,15 @@ If your environment is Node then the entire root ```./rbroker/``` directory
 represents the JavaScript RBroker Framework as it uses the same source for both 
 environments.
 
-Installation
-============
+Installing
+==========
 
 Browser
 -------
 
 Using the browser version:
 
-```bash
+```
 ./rbroker/browser/rbroker.js
 ./rbroker/browser/rbroker.min.js
 ``` 
@@ -131,8 +143,7 @@ __Browser:__
 
 ```
 {
-	"host": "http://dhost:port",
-	"cors:" true,
+	"endpoint": "http://dhost:port",
 	"credentials": {
 	   "username": "testuser",
 	   "password": "changeme"
@@ -140,19 +151,23 @@ __Browser:__
 }	
 ```
 
-Alternatively, you can run the examples without moving them via the embedded 
-web server if you have Node.js installed:
+- Open your browser and select an example `.html` file to run. All examples 
+simply print to stdout viewable from your browser debug console.
 
-`$ npm install --global gulp`
+Alternatively, you can run the examples as is without moving them via the 
+embedded web server if you have [Node.js](http://nodejs.org/download/) installed:
+
+`$ npm install rbroker`
 
 `$ cd ./rbroker`
 
 `$ npm install`
 
-`$gulp start`
+`$ npm start`
 
-Open your browser to _http://localhost:8080/examples/_ and select an example 
-.html file to run.
+Open your browser to _http://localhost:8080_ and select a example 
+`.html` file to run. All examples simply print to stdout viewable from your 
+browser debug console.
 
 __Node.js:__
 
@@ -161,7 +176,7 @@ Set the DeployR endpoint and basic authentication credentials in
 
 ```
 {
-	"host": "http://dhost:port",
+	"endpoint": "http://dhost:port",
 	"credentials": {
 	   "username": "testuser",
 	   "password": "changeme"
@@ -177,27 +192,24 @@ From the command line run one of the Node.js examples:
 Building
 ========
 
-This section only pertains to _Browser_ environments. 
+This section only pertains to the _Browser_ environment.  
 
 Our dev and release builds are handled by [gulp.js](http://gulpjs.com/).
 
 Installation
 ------------
 
-First you need to install `gulp` (`$ sudo npm install --global gulp`)
+1. [Download and install](http://nodejs.org/download/) Node.js
+2. `$ npm install rbroker`
+3. `$ cd ./rbroker`
+4. `$ npm install` This will install the development tools needed to build locally.
 
-After cloning you can simply do an NPM install.
+Targets
+-------
 
-`$ npm install`
-
-This will install the development tools needed to build locally.
-
-Shortcuts
----------
-
- * `gulp` Runs a build.
- * `gulp start` Runs a build and starts a local webserver with LiveReload 
- (port __8080__) rebuilding on file changes.
+ * `$ npm run build` - Runs a build.
+ * `$ npm start` - Runs a build and starts a local webserver with LiveReload 
+   on `http://localhost:8080` rebuilding on file changes.
 
 Destination
 -----------
@@ -206,12 +218,14 @@ The browser build destination is located in the __./browser__ directory.
 Tests
 =====
 
-Coming soon...
+The DeployR JavaScript RBroker Framework also ships with a set of unit tests. 
+See [here](https://github.com/deployr/js-rbroker-framework/tree/master/test) for
+details.
 
 License
 =======
 
-Copyright (C) 2010-2014 by Revolution Analytics Inc.
+Copyright (C) 2010-2015 by Revolution Analytics Inc.
 
 This program is licensed to you under the terms of Version 2.0 of the
 Apache License. This program is distributed WITHOUT
