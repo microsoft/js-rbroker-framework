@@ -29,5 +29,5 @@ gulp.task('connect', ['build'], function() {
     gulp.watch([config.name + '.js', './lib/**/*.js'], ['build']);
 
     // Watch Examples that use HTML and livereload
-    gulp.watch('./examples/**/*.html', ['html']);
+    gulp.watch('./examples/**/*.html', ['build']);
 });
