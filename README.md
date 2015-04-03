@@ -20,7 +20,7 @@ Links
 Downloading
 ============
 
-There are a few diffrent was to obtaining the library depending on your 
+There are a few diffrent ways to obtain the library depending on your 
 environment and intended usage:
 
 - `$ npm install rbroker` dependent on [Node.js](http://nodejs.org/download/)
@@ -38,8 +38,7 @@ It is __not__ a requirement for the browser however using the JavaScript client
 library from within a server or from the command line in addition to the browser
 can be powerful!
 
-Browser
--------
+### Browser
 
 If your environment is the browser the JavaScript client library can be found
 here:
@@ -49,8 +48,7 @@ here:
 ./rbroker/browser/rbroker.min.js
 ```
 
-Node.js
--------
+### Node.js
 
 If your environment is Node then the entire root ```./rbroker/``` directory 
 represents the JavaScript RBroker Framework as it uses the same source for both 
@@ -59,8 +57,7 @@ environments.
 Installing
 ==========
 
-Browser
--------
+### Browser
 
 Using the browser version:
 
@@ -81,18 +78,17 @@ Or
 <script src="./browser/rbroker.min.js"></script>
 ```
 
-Node.js
--------
+### Node.js
 
 1. [Download and install](http://nodejs.org/download/) Node.js, which includes 
 npm. npm, which stands for _node packaged modules_, is a way to manage 
 development dependencies through Node.js.
 
-2. ```$npm install rbroker```
+2. `$npm install rbroker`
 
 3. `require` the directory:
 
-```
+```js
 var rbroker = require('rbroker');
 ```
 
@@ -131,8 +127,7 @@ follows:
 3. Upload each of the files found in the `./examples/analytics` directory
 4. Set the access control on 5SecondNoOp.R to Public.
 
-Running
--------
+### Running
 
 __Browser:__
 
@@ -141,7 +136,7 @@ __Browser:__
 - Set the DeployR endpoint and basic authentication credentials in 
 `./examples/config.json`
 
-```
+```json
 {
 	"endpoint": "http://dhost:port",
 	"credentials": {
@@ -174,7 +169,7 @@ __Node.js:__
 Set the DeployR endpoint and basic authentication credentials in 
 `./examples/config.json`
 
-```
+```json
 {
 	"endpoint": "http://dhost:port",
 	"credentials": {
@@ -187,7 +182,7 @@ Set the DeployR endpoint and basic authentication credentials in
 
 From the command line run one of the Node.js examples:
 
-```$ node ./examples/PATH_TO_EXAMPLE_FILE.js```
+`$ node ./examples/PATH_TO_EXAMPLE_FILE.js`
 
 Building
 ========
@@ -196,23 +191,21 @@ This section only pertains to the _Browser_ environment.
 
 Our dev and release builds are handled by [gulp.js](http://gulpjs.com/).
 
-Installation
-------------
+### Installation
 
 1. [Download and install](http://nodejs.org/download/) Node.js
 2. `$ npm install rbroker`
 3. `$ cd ./rbroker`
 4. `$ npm install` This will install the development tools needed to build locally.
 
-Targets
--------
+### Targets
 
  * `$ npm run build` - Runs a build.
  * `$ npm start` - Runs a build and starts a local webserver with LiveReload 
    on `http://localhost:8080` rebuilding on file changes.
 
-Destination
------------
+### Destination
+
 The browser build destination is located in the __./browser__ directory.
 
 Tests
