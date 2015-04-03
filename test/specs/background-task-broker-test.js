@@ -552,3 +552,51 @@ test('should unsuccessfully execute RTask with "bad" task execution options', fu
         rscriptauthor: 'testuser'
     }, fixtures.bad())));
 });
+
+/**
+ * Cancel long running RTask.
+ */
+test('should successfully cancel long running RTask', function(t) {
+    t.plan(5);
+
+    var bgBroker, rTaskToken,
+        brokerConfig = {
+            host: fixtures.endpoint,
+            credentials: fixtures.credentials
+        };
+
+    bgBroker = rbroker.backgroundTaskBroker(brokerConfig)
+        .complete(function(rTask, rTaskResult) {
+            jobID = rTaskResult.id;
+
+            t.notEqual(rTaskResult, null, 'rTaskResult');
+            t.ok(rTaskResult.success, 'rTaskResult.success');
+            t.notEqual(jobID, null, 'jobID');
+
+            rTaskToken.cancel(true);
+
+            // wait 5 seconds for /r/job/cancel to take place
+            setTimeout(function() {
+                fixtures.verifyJobExitStatus(bgBroker.owner(), jobID, 'Cancelled')
+                    .then(function(result) {
+                        t.ok(result.status, 'jobCancelled');
+                    })
+                    .ensure(function() {
+                        bgBroker.shutdown().then(function() {
+                            t.pass('bgBroker.shutdown success');
+                        }, function(err) {
+                            t.fail('bgBroker.shutdown failed: ' + err.get('error'));
+                        });
+                    });
+            }, 5000);
+        })
+        .error(function(err) {
+            t.fail('bgBroker failed: ' + err.get('error'));
+        });
+
+    rTaskToken = bgBroker.submit(rbroker.backgroundTask({
+        name: 'testJobCancel',
+        descr: 'Background Task',
+        code: 'Sys.sleep(10)' // sleep 10 seconds so we can cancel it
+    }));
+});
