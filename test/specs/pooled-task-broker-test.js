@@ -584,3 +584,50 @@ test('should unsuccessfully execute RTask with "bad" task execution options', fu
         author: 'testuser'
     }, fixtures.bad())));
 });
+
+/**
+ * Cancel long running RTask.
+ */
+test('should successfully cancel long running RTask', function(t) {
+    t.plan(3);
+
+    var pBroker, rTaskToken,
+        brokerConfig = {
+            host: fixtures.endpoint,
+            credentials: fixtures.credentials
+        };
+
+    pBroker = rbroker.pooledTaskBroker(brokerConfig)
+        .complete(function(rTask, rTaskResult) {
+            t.notEqual(rTaskResult, null, 'rTaskResult');
+            t.notOk(rTaskResult.success, 'rTaskResult.success');
+        })
+        .error(function(err) {
+            // 
+            // suppress valid task submit errors however non-task execution 
+            // errors should fail the test
+            //
+            if (!err.task) {
+                t.fail('pBroker failed: ' + err.get('error'));
+            }
+        })
+        .start(function(rTask) {            
+            //
+            // wait 5 seconds for the task submit to get processed on the server
+            //
+            setTimeout(function() {
+                rTaskToken.cancel(true);
+            }, 5000);
+        })
+        .idle(function() {
+            pBroker.shutdown().then(function() {
+                t.pass('pBroker.shutdown success');
+            }, function(err) {
+                t.fail('pBroker.shutdown failed: ' + err.get('error'));
+            });
+        });
+
+    rTaskToken = pBroker.submit(rbroker.pooledTask({
+        code: 'Sys.sleep(10)'
+    }));
+});
