@@ -20,7 +20,7 @@ var gulp    = require('gulp'),
  */
 gulp.task('connect', ['build'], function() {
     connect.server({
-        root: [config.root +'/examples/', config.dist],
+        root: [config.root + '/examples/', config.dist],
         port: config.port,
         livereload: true
     });

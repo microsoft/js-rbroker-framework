@@ -1,5 +1,5 @@
 /*!
- * Copyright (C) 2010-2015 by Revolution Analytics Inc.
+ * Copyright (C) 2010-2014 by Revolution Analytics Inc.
  *
  * This program is licensed to you under the terms of Version 2.0 of the
  * Apache License. This program is distributed WITHOUT
@@ -14,31 +14,25 @@ var gulp   = require('gulp'),
     config = require('../config.js'),
     pkg    = config.pkg,
     banner = [
-	'/*!',
-	' * `<%= pkg.name %>` The DeployR RBroker Library v<%= pkg.version %>',
+    '/*!',
+    ' * `<%= pkg.name %>` JavaScript Client Library v<%= pkg.version %>',
     ' * <%= pkg.homepage %>',
     ' *',
     ' * Copyright (C) 2010-2015 by Revolution Analytics Inc.',
-    ' *',    
-    ' * This program is licensed to you under the terms of Version 2.0 of the',
-    ' * Apache License. This program is distributed WITHOUT ANY EXPRESS OR',
-    ' * IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT, MERCHANTABILITY', 
-    ' * OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the', 
-    ' * Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0) for',
-    ' * more details.',
+    ' * Released under the Apache License 2.0',
+    ' * http://www.apache.org/licenses/LICENSE-2.0',    
     ' *',
     ' * Includes:', 
+    ' *   - superagent: https://github.com/visionmedia/superagent',
+    ' *   - ws: https://github.com/einaros/ws',
     ' *   - D.js: http://malko.github.io/D.js',
-    ' *   - deploy: https://www.npmjs.com/package/deployr',
-    ' *   - enum: https://www.npmjs.org/package/enum',
-    ' *   - merge: https://www.npmjs.org/package/merge',
-    ' *   - selfish: https://www.npmjs.org/package/selfish',    
-    ' *',
-    ' * D',
-    ' *',
-    ' * Copyright (C) 2013 Jonathan Gotti <jgotti at jgotti dot net>', 
-    ' * Open Source Initiative OSI - The MIT License',
+    ' *   - yui-lang.js: https://github.com/yui/yui3 (DeployR port)',
+    ' *', 
+    ' * superagent',
     ' *',    
+    ' * Copyright (c) 2014-2015 TJ Holowaychuk <tj@vision-media.ca>',         
+    ' * Open Source Initiative OSI - The MIT License',
+    ' *',
     ' * Permission is hereby granted, free of charge, to any person obtaining',
     ' * a copy of this software and associated documentation files (the,',        
     ' * "Software"), to deal in the Software without restriction, including',
@@ -58,20 +52,9 @@ var gulp   = require('gulp'),
     ' * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION',
     ' * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.',
     ' *',
-    ' * deployr',
-    ' *',    
-    ' * Copyright (C) 2010-2015 by Revolution Analytics Inc.',
-    ' *',    
-    ' * This program is licensed to you under the terms of Version 2.0 of the',
-    ' * Apache License. This program is distributed WITHOUT ANY EXPRESS OR',
-    ' * IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT, MERCHANTABILITY', 
-    ' * OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the', 
-    ' * Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0) for',
-    ' * more details.',
-    ' *',    
-    ' * enum',
+    ' * ws',
     ' *',
-    ' * Copyright (c) 2015 Adriano Raiano',
+    ' * Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>',
     ' * Open Source Initiative OSI - The MIT License',
     ' *',
     ' * Permission is hereby granted, free of charge, to any person obtaining ',
@@ -93,9 +76,9 @@ var gulp   = require('gulp'),
     ' * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE ',
     ' * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.',
     ' *',
-    ' * merge',
+    ' * D',
     ' *',
-    ' * Copyright (c) 2014 yeikos - http://www.yeikos.com', 
+    ' * Copyright (C) 2013 Jonathan Gotti <jgotti at jgotti dot net>', 
     ' * Open Source Initiative OSI - The MIT License',
     ' *',    
     ' * Permission is hereby granted, free of charge, to any person obtaining',
@@ -141,20 +124,53 @@ var gulp   = require('gulp'),
     ' * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION',
     ' * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.',
     ' *',
+    ' * yui-lang',
+    ' *',    
+    ' * The lang component is a DeployR port of yui-lang.js by Yahoo!',
+    ' *',
+    ' * Software License Agreement (BSD License)',
+    ' * Copyright (c) 2013, Yahoo! Inc. All rights reserved.',
+    ' *',
+    ' * Redistribution and use of this software in source and binary forms, ',    
+    ' * with or without modification, are permitted provided that the ',
+    ' * following conditions are met:',
+    ' *',
+    ' * Redistributions of source code must retain the above copyright notice,',    
+    ' * this list of conditions and the following disclaimer. Redistributions',     
+    ' * in binary form must reproduce the above copyright notice, this list of', 
+    ' * conditions and  the following disclaimer in the documentation and/or ',
+    ' * other materials provided with the distribution.',
+    ' * ',
+    ' * Neither the name of Yahoo! Inc. nor the names of YUI\'s contributors ',
+    ' * may be used to endorse or promote products derived from this software ',
+    ' * without specific prior written permission of Yahoo! Inc.',
+    ' * ',
+    ' * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS',   
+    ' * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT ',
+    ' * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR ',
+    ' * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT ',
+    ' * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, ',
+    ' * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT ',
+    ' * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, ',
+    ' * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY ',
+    ' * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT, ', 
+    ' * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE ',
+    ' * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.',
+    ' *',
     ' * Date: <%= date.today %>',
-    ' */',	
+    ' */',  
   ''].join('\n');  
 
 function today() {
-	var today = new Date(),
-	    dd    = today.getDate(),
-	    mm    = today.getMonth() + 1, // January is 0
-	    yyyy  = today.getFullYear();
+    var today = new Date(),
+        dd    = today.getDate(),
+        mm    = today.getMonth() + 1, // January is 0
+        yyyy  = today.getFullYear();
 
-	if(dd < 10) { dd = '0' + dd; } 
-	if(mm < 10) { mm = '0' + mm; } 
+    if(dd < 10) { dd = '0' + dd; } 
+    if(mm < 10) { mm = '0' + mm; } 
 
-	return  yyyy + '-' + mm + '-' + dd;
+    return  yyyy + '-' + mm + '-' + dd;
 }  
 
 /*
@@ -162,8 +178,8 @@ function today() {
  *
  * Prefix the copyright information at the top.
  */
-gulp.task('header', ['uglifyjs'], function() {
-	return gulp.src(config.dist + '/*.js')
- 	      .pipe(header(banner, { pkg : config.pkg, date: { today: today() } } ))
- 	      .pipe(gulp.dest(config.dist));
+gulp.task('header', ['uglify'], function() {
+    return gulp.src(config.dist + '/*.js')
+          .pipe(header(banner, { pkg : config.pkg, date: { today: today() } } ))
+          .pipe(gulp.dest(config.dist));
 });
