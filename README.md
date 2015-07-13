@@ -1,6 +1,8 @@
 JavaScript RBroker Framework for DeployR
 ========================================
 
+[![Build Status](http://nicrdepstaging.cloudapp.net:8080/buildStatus/icon?job=js-rbroker-framework)](http://nicrdepstaging.cloudapp.net:8080/job/js-rbroker-framework/)
+
 The JavaScript RBroker Framework provides a simple yet powerful API that 
 supports the rapid integration of R Analytics inside any browser or Node.js 
 based application. Simply define an _RTask_, submit your task to an instance of 
