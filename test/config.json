@@ -1,5 +1,5 @@
 {
-    "endpoint": "http://nicrdeployrdev.cloudapp.net:7400",
+    "endpoint": "http://localhost:7400",
     "credentials": {
         "username": "testuser",
         "password": "changeme"
