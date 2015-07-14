@@ -10,17 +10,21 @@
  */
 
 var gulp    = require('gulp'),
-    uglify  = require('gulp-uglifyjs'),
+    uglify  = require('gulp-uglify'),
     plumber = require('gulp-plumber'),
+    rename  = require("gulp-rename"),
     onError = require('../util/errors'),      
     config  = require('../config');
 
 /*
  * Task: uglifyjs
  */
-gulp.task('uglifyjs', ['browserify'], function() {
+gulp.task('uglify', ['browserify'], function() {
 	return gulp.src(['./browser/' + config.name + '.js'])
 	       .pipe(plumber({ errorHandler: onError }))
-	       .pipe(uglify(config.name + '.min.js', { compress: false }))
+	       .pipe(uglify())
+           .pipe(rename({
+              extname: '.min.js'
+           }))
 	       .pipe(gulp.dest('./browser/'));	       
 });

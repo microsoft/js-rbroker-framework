@@ -9,16 +9,17 @@
  * details.
  */
 
-var DiscreteTask         = require('./lib/task/discreate-task'),
+var deployr              = require('deployr'),
+    DiscreteTask         = require('./lib/task/discreate-task'),
     PooledTask           = require('./lib/task/pooled-task'),
     BackgroundTask       = require('./lib/task/background-task'),
     DiscreteTaskBroker   = require('./lib/engine/discrete-task-broker'),
     PooledTaskBroker     = require('./lib/engine/pooled-task-broker'),
-    BackgroundTaskBroker = require('./lib/engine/background-task-broker');
+    BackgroundTaskBroker = require('./lib/engine/background-task-broker');    
 
 // -- expose `deployr` into the global namespace for browser convenience --
 if (typeof window !== 'undefined' && !window.deployr) {
-    window.deployr = require('deployr');
+    window.deployr = deployr;
 }
 
 /**
@@ -37,6 +38,32 @@ if (typeof window !== 'undefined' && !window.deployr) {
  * @for rbroker
  */
 module.exports = {
+    /**
+     * Expose `deployr` via the `rbroker` for convenience.     
+     *
+     * @property deployr
+     * @static
+     * @api public
+     */     
+    deployr: deployr,
+
+   /**
+    * Defines the factory for creating a DeployR-specific encoded R object to be 
+    * sent as input parameters to an R script.
+    *
+    * Example:
+    * ```
+    *    var rinput = rbroker.RInput.logical('logical_name', true);
+    *    var rinput = rbroker.RInput.numeric('numeric_name', 10.5);
+    *    var rinput = rboker.RInput.integer('integer_name', 5);
+    *    var rinput = rboker.RInput.character('character_name', 'Hello');
+    *    // ect...
+    * ```
+    * @property RInput
+    * @static
+    * @api public
+    */
+    RInput: deployr.RInput,
 
     /**
      * Create an instance of an `DiscreteTaskBroker` to manage the execution of
