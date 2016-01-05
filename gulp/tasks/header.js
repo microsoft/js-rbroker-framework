@@ -1,5 +1,5 @@
 /*!
- * Copyright (C) 2010-2014 by Revolution Analytics Inc.
+ * Copyright (C) 2010-2016, Microsoft Corporation
  *
  * This program is licensed to you under the terms of Version 2.0 of the
  * Apache License. This program is distributed WITHOUT
@@ -18,7 +18,7 @@ var gulp   = require('gulp'),
     ' * `<%= pkg.name %>` JavaScript Client Library v<%= pkg.version %>',
     ' * <%= pkg.homepage %>',
     ' *',
-    ' * Copyright (C) 2010-2015 by Revolution Analytics Inc.',
+    ' * Copyright (C) 2010-2016, Microsoft Corporation',
     ' * Released under the Apache License 2.0',
     ' * http://www.apache.org/licenses/LICENSE-2.0',    
     ' *',

@@ -1,9 +1,9 @@
 {
-	"host": "http://localhost:7400",
+	"host": "http://localhost:8000",
 	"cors": true,
 	"credentials": {
 	   "username": "testuser",
-	   "password": "changeme"
+	   "password": "YOUR_TESTUSER_PASSWORD"
 	},
 	"constants" : {
 		"TUTORIAL_REPO_OWNER": "testuser",
