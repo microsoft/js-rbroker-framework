@@ -138,12 +138,15 @@ __Browser:__
 - Set the DeployR endpoint and basic authentication credentials in 
 `./examples/config.json`
 
+***NOTE:*** The `testuser` user must first be enabled in DeployR and a password
+set.
+
 ```json
 {
 	"endpoint": "http://dhost:port",
 	"credentials": {
 	   "username": "testuser",
-	   "password": "changeme"
+	   "password": "YOUR_TESTUSER_PASSWORD"	   
 	}
 }	
 ```
@@ -171,12 +174,15 @@ __Node.js:__
 Set the DeployR endpoint and basic authentication credentials in 
 `./examples/config.json`
 
+***NOTE:*** The `testuser` user must first be enabled in DeployR and a password
+set.
+
 ```json
 {
 	"endpoint": "http://dhost:port",
 	"credentials": {
 	   "username": "testuser",
-	   "password": "changeme"
+	   "password": "YOUR_TESTUSER_PASSWORD"
 	}
 }
 
