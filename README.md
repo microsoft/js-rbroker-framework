@@ -36,13 +36,13 @@ Environments
 - Browser and Node.js
 
 We recommend you [download and install](http://nodejs.org/download/) Node.js.
-It is __not__ a requirement for the browser however using the JavaScript client 
-library from within a server or from the command line in addition to the browser
-can be powerful!
+It is __not__ a requirement for the browser however using the JavaScript RBroker
+Framework from within a server or from the command line in addition to the 
+browser can be powerful!
 
 ### Browser
 
-If your environment is the browser the JavaScript client library can be found
+If your environment is the browser the JavaScript RBroker Framework can be found
 here:
 
 ```
@@ -220,7 +220,7 @@ details.
 License
 =======
 
-Copyright (C) 2010-2015 by Revolution Analytics Inc.
+Copyright (C) 2010-2016, Microsoft Corporation
 
 This program is licensed to you under the terms of Version 2.0 of the
 Apache License. This program is distributed WITHOUT

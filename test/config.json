@@ -1,8 +1,8 @@
 {
-    "endpoint": "http://localhost:7400",
+    "endpoint": "http://localhost:8000",
     "credentials": {
         "username": "testuser",
-        "password": "changeme"
+        "password": "YOUR_TESTUSER_PASSWORD"
     },
     "cors": true,
     "allowSelfSignedSSLCert": true
