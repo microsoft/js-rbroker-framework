@@ -1,13 +1,1343 @@
-<!doctype html>
-<html>
-<head>
-    <title>Redirect</title>
-    <meta http-equiv="refresh" content="0; url=https://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc/">
-</head>
-<body>
-<h1>Redirecting to our site...</h1>
-<p>
-If you see this, <a href="https://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc/">click here to continue</a>.
-</p>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="DeployR - Simple R analytics integration for application developers.">
+    <meta name="keywords" content="R,Simple,DeployR,Java,JavaScript,.NET,Statistics,Big Data">
+    <meta name="author" content="Microsoft Corporation">
+    <meta name="google-site-verification" content="BQWjliQil8coeYFDfd-nee7j5GDJ0p-6lU4abeJiAZU">
+
+    <!--<time itemprop="buildDate" datetime="Thursday, April 21st, 2016, 7:47:06 AM PDT"></time>-->
+
+    <title>
+      DeployR &middot; RBroker JavaScript API  
+    </title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/png" >
+    <link rel="icon" href="./assets/img/favicon.png" type="image/png">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+
+    <!-- Documentation extras -->
+    <link href="./assets/css/github.css" rel="stylesheet">
+
+    <!-- Google Webfonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,600" rel="stylesheet" type="text/css">
+
+    <!-- Grove Styles (switch for different color schemes, e.g. "styles-cleanblue.css") -->
+    <link rel="stylesheet" href="./assets/css/styles-blue.css" id="grove-styles">
+
+    <!-- Site Styles -->
+    <link href="./assets/css/site.css" rel="stylesheet">
+    <style type="text/css">.bs-footer{border: none;}</style>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script>
+  </head>
+  <body data-spy="scroll" data-target="#sidenav">
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <!-- master nav -->
+    <header>
+   <nav class="navbar navbar-default grove-navbar" role="navigation">
+      <div class="container">
+         <div class="navbar-header">
+            <a href="#" class="grove-toggle" data-toggle="collapse" data-target=".grove-nav">   
+            <i class="glyphicons show_lines"></i>  
+            </a>
+            <a href="./" class="navbar-brand">
+            <img src="./assets/img/rLogo.png" alt="DeployR"> DeployR
+            </a>
+         </div>
+         <div class="collapse navbar-collapse grove-nav">
+         </div>
+         <!-- /.navbar-collapse -->
+      </div>
+   </nav>
+</header>
+
+
+    <!-- page title -->
+    <div class="widewrapper pagetitle strong-highlight">
+   <div class="container">
+      <h1>RBroker JavaScript API <small></small></h1>
+      <span class="product-version">
+         Version 8.0.5         
+      </span>
+   </div>
+</div>
+  
+    <div class="widewrapper sf-wrapper">
+      <div class="container content" role="main">
+        <div>
+          
+<div class="row"><div class="col-md-3" id="sidenav"><div class="bs-sidebar hidden-print hidden-xs hidden-sm" role="complementary"><ul class="nav bs-sidenav"><li class="active"><a href="#introduction">Introducing the API</a><ul class="nav"></ul></li><li><a href="#install">Download and Install</a><ul class="nav"></ul></li><li><a href="#global">Global Object `rbroker`</a><ul class="nav"><li><a class="toc-section-0" href="#dbrokerfactory">discreteTaskBroker</a></li><li><a class="toc-section-0" href="#pbrokerfactory">pooledTaskBroker</a></li><li><a class="toc-section-0" href="#bgbrokerfactory">backgroundTaskBroker</a></li><li><a class="toc-section-0" href="#dtaskfactory">discreteTask</a></li><li><a class="toc-section-0" href="#ptaskfactory">pooledTask</a></li><li><a class="toc-section-0" href="#bgtaskfactory">backgroundTask</a></li></ul></li><li><a href="#rbroker">RBroker</a><ul class="nav"><li><a class="toc-section-0" href="#complete">complete</a></li><li><a class="toc-section-0" href="#error">error</a></li><li><a class="toc-section-0" href="#always">ensure</a></li><li><a class="toc-section-0" href="#progress">progress</a></li><li><a class="toc-section-0" href="#idel">idel</a></li><li><a class="toc-section-0" href="#submit">submit</a></li><li><a class="toc-section-0" href="#shutdown">shutdown</a></li><li><a class="toc-section-0" href="#status">status</a></li><li><a class="toc-section-0" href="#flush">flush</a></li><li><a class="toc-section-0" href="#refresh">refresh</a></li><li><a class="toc-section-0" href="#max">maxConcurrency</a></li></ul></li><li><a href="#dbroker">DiscreteTaskBroker</a><ul class="nav"></ul></li><li><a href="#pbroker">PooledTaskBroker</a><ul class="nav"></ul></li><li><a href="#bgbroker">BackgroundTaskBroker</a><ul class="nav"></ul></li><li><a href="#dtask">DiscreteTask</a><ul class="nav"></ul></li><li><a href="#ptask">PooledTask</a><ul class="nav"></ul></li><li><a href="#bgtask">BackgroundTask</a><ul class="nav"></ul></li><li><a href="#rtoken">RTaskToken</a><ul class="nav"><li><a class="toc-section-0" href="#task-complete">complete</a></li><li><a class="toc-section-0" href="#task-error">error</a></li><li><a class="toc-section-0" href="#task-always">ensure</a></li><li><a class="toc-section-0" href="#task-cancel">cancel</a></li><li><a class="toc-section-0" href="#task-cancelled">isCancelled</a></li></ul></li><li><a href="#rresult">RTaskResult</a><ul class="nav"></ul></li></ul></div></div><div class="col-md-9" role="main"><div class="container-fluid content doc-content"><h1 id="introduction" style="padding:0"></h1>
+
+<h1 id="introduction">Introducing the API</h1>
+
+<p>The JavaScript RBroker Framework is the simplest way to integrate DeployR-enabled 
+analytics Web services into your JavaScript applications. It supports both the 
+browser and Node.js environments.</p>
+<p>The RBroker Framework defines three simple building blocks:</p>
+<ul>
+<li><strong>RBroker</strong>: an RTask execution engine</li>
+<li><strong>RTask</strong>: an executable representing any analytics Web service</li>
+<li><strong>RTaskResult</strong>: a collection of result data for an instance of RTask</li>
+</ul>
+<p>These building blocks are described in further detail in the 
+<a href="../rbroker">RBroker Framework Tutorial</a>.</p>
+<h1 id="install" style="padding:0"></h1>
+
+<h1 id="install">Download and Install</h1>
+
+<ol>
+<li><p><a href="https://github.com/Microsoft/js-rbroker-framework/releases" target="_blank">Download the DeployR JavaScript RBroker library</a> and begin using it in your application to communicate with DeployR.  </p>
+</li>
+<li><p>Unzip the compressed folder. You will see the following structure:</li></p>
+<pre class="prettyprint"><span class="pln">rbroker/</span><span class="pln"></span>
+<span class="pun">├──</span><span class="pln"> examples/</span>
+<span class="pun">├──</span><span class="pln"> gulp/</span>
+<span class="pun">├──</span><span class="pln"> lib/</span>  
+<span class="pun">├──</span><span class="pln"> browser</span><span class="pun">/</span><span class="pln"></span>
+<span class="pun">│ </span><span class="pln">    </span><span class="pun">├──</span><span class="pln"> rbroker.js</span>
+<span class="pun">│ </span><span class="pln">    </span><span class="pun">└──</span><span class="pln"> rbroker.min.js</span>
+<span class="pun">├──</span><span class="pln"> rbroker.js</span>
+<span class="pun">├──</span><span class="pln"> gulpfile.js</span>
+<span class="pun">├──</span><span class="pln"> package.json</span>
+<span class="pun">├──</span><span class="pln"> LICENSE.md</span>
+<span class="pun">└──</span><span class="pln"> README.md</span></pre>
+
+<p>The base <code>rbroker.js</code> file contains the source code for the DeployR JavaScript RBroker library. The <code>browser/</code> folder includes the precompiled <strong>browser only</strong> 
+version of the JavaScript RBroker. The <code>examples/</code> folder 
+includes both browser and Node.js samples. Beyond that, any other included file 
+provides support for packages, license information, and development.</p>
+</li>
+<li><p>Install the JavaScript RBroker library using the instructions for your particular environment:</p>
+<p></p><ul class="code-tabs nav nav-tabs"><li class="active"><a href="#tab-ByMW7l_PLx-0" data-toggle="tab" data-type="">Browser</a></li><li class=""><a href="#tab-ByMW7l_PLx-1" data-toggle="tab" data-type="">Node.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-ByMW7l_PLx-0"><p></p>
+<pre><code>&lt;!-- Latest compiled raw JavaScript variation --&gt;
+&lt;script src=&quot;./browser/rbroker.js&quot;&gt;&lt;/script&gt;
+
+Or
+
+&lt;!-- Latest compiled minified JavaScript variation --&gt;
+&lt;script src=&quot;./browser/rbroker.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p></p></div><div class="tab-pane" id="tab-ByMW7l_PLx-1"><p></p>
+<p><a href="http://nodejs.org/download/">Download and install</a> Node.js, which includes npm.
+npm, which stands for <em>node packaged modules</em>, is a way to manage development 
+dependencies through Node.js.</p>
+<p>From the command line:</p>
+<ol>
+<li><p>Navigate to the root <code>/rbroker/</code> directory.</p>
+</li>
+<li><p>Run <code>npm install --production</code>. npm will look at the package.json file 
+and automatically install the necessary local runtime dependencies listed there.</p>
+</li>
+<li><p>Include the JavaScript Client Library for DeployR <code>deployr</code> dependency 
+by first installing it using the directions outlined <a href="/documents/dev/client-jsdoc/#install">here</a>. </p>
+</li>
+<li><p>Once installed copy the entire <code>/deployr</code> directory into <code>./rbroker/node_modules</code>.
+This step is needed because the JavaScript Client Library for DeployR is 
+<strong>not yet</strong> registered as a public npm package. This is comming soon.</p>
+</li>
+<li><p>Similar to the JavaScript Client Library for DeployR, the JavaScript RBroker 
+library is <strong>not yet</strong> registered as a published npm package either. After 
+running <code>npm install --production</code> in step 2, you will need to manually copy 
+the entire <code>/rbroker/</code> directory into the <code>node_modules</code> directory of 
+the Node.js project that will be using it.</p>
+</li>
+<li><p><code>require</code> the directory in your code:</p>
+<pre><code>var rbroker = require(&#39;rbroker&#39;);</code></pre>
+</li>
+</ol>
+<p></p></div></div><p></p>
+</li>
+</ol>
+<hr>
+<h1 id="global" style="padding:0"></h1>
+
+<h1 id="global-object-rbroker-">Global Object <code>rbroker</code></h1>
+<div class="well"><p>The <code>rbroker</code> global namespace object. This is the public interface for the
+DeployR RBroker. It is used as a <em>factory</em> to simplify the creation of new 
+instances of:</p>
+<ol>
+<li><p>DiscreteTaskBroker</p>
+</li>
+<li><p>PooledTaskBroker</p>
+</li>
+<li><p>BackgroundTaskBroker</p>
+</li>
+<li><p>DiscreteTask</p>
+</li>
+<li><p>PooledTask</p>
+</li>
+<li><p>BackgroundTask</p>
+</li>
+</ol>
+<p><strong>Browser</strong></p>
+<pre><code>&lt;script src=&quot;./browser/rbroker.js&quot;&gt;&lt;/script&gt;
+
+// -- or --
+
+&lt;script src=&quot;./browser/rbroker.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;window.rbroker&lt;/script&gt;</code></pre>
+<p><strong>Node.js</strong></p>
+<pre><code>#!/bin/env node
+var rbroker = require(&#39;rbroker&#39;);</code></pre>
+</div>
+
+
+
+<h2 id="dbrokerfactory" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">discreteTaskBroker</strong> (config) <span class="label label-success">static</span></p>
+<p>Create an instance of an <a href="#dbroker" class="api-type">DiscreteTaskBroker</a> to 
+manage the execution of a <a href="#dtask" class="api-type">DiscreteTask</a>.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>[config]</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> Configuration options for a Discrete Task <a href="#rbroker" class="api-type">RBroker</a></p>
+<ul>
+<li><strong>deployrEndpoint</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> Specifies the HTTP URL endpoint for a DeployR Server 
+instance. For example: <code>http://dserver:dport</code></li>
+<li><p><strong>maxConcurrentTaskLimit</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="api-type" target="_blank">Number</a> Specifies the task 
+execution concurrency levels requested for an instance of an <a href="#rbroker" class="api-type">RBroker</a>.</p>
+<p>Specifying a value of 1 will result in serial execution for all tasks 
+submitted to the <a href="#rbroker" class="api-type">RBroker</a>. Specifying a value greater 
+than 1 will result in concurrent execution for tasks submitted to the 
+<a href="#rbroker" class="api-type">RBroker</a>. In all cases, up to maxConcurrentTaskLimit 
+RTask will execute concurrently. Regardless of what task execution 
+concurrency level you use the execution of tasks will always proceed in a 
+FIFO order.</p>
+<p>Regardless of the concurrency levels requested when creating an instance of 
+<a href="#rbroker" class="api-type">RBroker</a>, a combination of DeployR Server Policies 
+and available DeployR Grid resources determine the actual task throughput 
+that will be achieved on the DeployR server.</p>
+<p>Where an instance of an <a href="#rbroker" class="api-type">RBroker</a> has been configured 
+for concurrency levels in excess of those supported by your DeployR Server 
+Policies or DeployR Grid resources, some tasks when executed will likely 
+result in RGridException. Such tasks can be resubmitted to the 
+<a href="#rbroker" class="api-type">RBroker</a> for execution at a later date. If 
+RGridException are seen frequently we recommend adjusting the appropriate 
+DeployR Server Policies and/or increasing the resources allocated to the 
+DeployR Grid.</p>
+</li>
+<li><strong>credentials</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a><ul>
+<li><strong>username</strong> - username </li>
+<li><strong>password</strong> - plain-text password</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#dbroker" class="api-type">DiscreteTaskBroker</a></p>
+<p>A new instance of an <code>DiscreteTaskBroker</code>.</p>
+<hr>
+<h2 id="pbrokerfactory" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">pooledTaskBroker</strong> (config) <span class="label label-success">static</span></p>
+<p>Create an instance of an <a href="#pbroker" class="api-type">PooledTaskBroker</a> to 
+manage the execution of a <a href="#ptask" class="api-type">PooledTask</a>.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>[config]</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> Configuration options for a Pooled Task <a href="#rbroker" class="api-type">RBroker</a></p>
+<ul>
+<li><strong>deployrEndpoint</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> Specifies the HTTP URL endpoint for a DeployR Server 
+instance. For example: <code>http://dserver:dport</code></li>
+<li><p><strong>maxConcurrentTaskLimit</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="api-type" target="_blank">Number</a> Specifies the task 
+execution concurrency levels requested for an instance of an <a href="#rbroker" class="api-type">RBroker</a>.</p>
+<p>Specifying a value of 1 will result in serial execution for all tasks 
+submitted to the <a href="#rbroker" class="api-type">RBroker</a>. Specifying a value greater 
+than 1 will result in concurrent execution for tasks submitted to the 
+<a href="#rbroker" class="api-type">RBroker</a>. In all cases, up to maxConcurrentTaskLimit 
+RTask will execute concurrently. Regardless of what task execution 
+concurrency level you use the execution of tasks will always proceed in a 
+FIFO order.</p>
+<p>Regardless of the concurrency levels requested when creating an instance of 
+<a href="#rbroker" class="api-type">RBroker</a>, a combination of DeployR Server Policies 
+and available DeployR Grid resources determine the actual task throughput 
+that will be achieved on the DeployR server.</p>
+<p>Where an instance of an <a href="#rbroker" class="api-type">RBroker</a> has been configured 
+for concurrency levels in excess of those supported by your DeployR Server 
+Policies or DeployR Grid resources, some tasks when executed will likely 
+result in RGridException. Such tasks can be resubmitted to the 
+<a href="#rbroker" class="api-type">RBroker</a> for execution at a later date. If 
+RGridException are seen frequently we recommend adjusting the appropriate 
+DeployR Server Policies and/or increasing the resources allocated to the 
+DeployR Grid.</p>
+</li>
+<li><strong>credentials</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a><ul>
+<li><strong>username</strong> username </li>
+<li><strong>password</strong> - text password</li>
+</ul>
+</li>
+<li><p><strong>pool</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p>
+<p>Preload options:</p>
+<ul>
+<li><strong>author</strong> Comma-separated list of authors, one author per filename.</li>
+<li><strong>directory</strong> - Comma-separated list of directories, one directory per filename.</li>
+<li><strong>filename</strong> - Comma-separated list of repository filenames.</li>
+<li><strong>version</strong> - <span class="label label-default">optional</span> Comma-separated list of versions, one version per filename.     </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#pbroker" class="api-type">PooledTaskBroker</a></p>
+<p>A new instance of an <code>PooledTaskBroker</code>.</p>
+<hr>
+<h2 id="bgbrokerfactory" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">backgroundTaskBroker</strong> (config) <span class="label label-success">static</span></p>
+<p>Create an instance of an <a href="#bgbroker" class="api-type">BackgroundTaskBroker</a> to 
+manage the execution of a <a href="#bgtask" class="api-type">BackgroundTask</a>.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>[config]</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> Configuration options for a Background Task <a href="#rbroker" class="api-type">RBroker</a></p>
+<ul>
+<li><strong>deployrEndpoint</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> Specifies the HTTP URL endpoint for a DeployR Server 
+instance. For example: <code>http://dserver:dport</code></li>
+<li><p><strong>maxConcurrentTaskLimit</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="api-type" target="_blank">Number</a> Specifies the task 
+execution concurrency levels requested for an instance of an <a href="#rbroker" class="api-type">RBroker</a>.</p>
+<p>Specifying a value of 1 will result in serial execution for all tasks 
+submitted to the <a href="#rbroker" class="api-type">RBroker</a>. Specifying a value greater 
+than 1 will result in concurrent execution for tasks submitted to the 
+<a href="#rbroker" class="api-type">RBroker</a>. In all cases, up to maxConcurrentTaskLimit 
+RTask will execute concurrently. Regardless of what task execution 
+concurrency level you use the execution of tasks will always proceed in a 
+FIFO order.</p>
+<p>Regardless of the concurrency levels requested when creating an instance of 
+<a href="#rbroker" class="api-type">RBroker</a>, a combination of DeployR Server Policies 
+and available DeployR Grid resources determine the actual task throughput 
+that will be achieved on the DeployR server.</p>
+<p>Where an instance of an <a href="#rbroker" class="api-type">RBroker</a> has been configured 
+for concurrency levels in excess of those supported by your DeployR Server 
+Policies or DeployR Grid resources, some tasks when executed will likely 
+result in RGridException. Such tasks can be resubmitted to the 
+<a href="#rbroker" class="api-type">RBroker</a> for execution at a later date. If 
+RGridException are seen frequently we recommend adjusting the appropriate 
+DeployR Server Policies and/or increasing the resources allocated to the 
+DeployR Grid.</p>
+</li>
+<li><strong>credentials</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a><ul>
+<li><strong>username</strong> - username </li>
+<li><strong>password</strong> - plain-text password</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#bgbroker" class="api-type">BackgroundTaskBroker</a></p>
+<p>A new instance of a <code>BackgroundTaskBroker</code>.</p>
+<hr>
+<h2 id="dtaskfactory" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">discreteTask</strong> (params) <span class="label label-success">static</span></p>
+<p>Create an instance of a <a href="#dtask" class="api-type">DiscreteTask</a> for an analytics Web 
+service based on either:</p>
+<ol>
+<li><p>Repository-managed R script</p>
+<pre><code>var rtask = rbroker.discreteTask({ 
+ filename: &#39;regression&#39;,
+ directory: &#39;demo&#39;,
+ author: &#39;george&#39;,
+ version: version
+ // Additional Discrete Task Options...
+});</code></pre>
+</li>
+<li><p>URL-addressable R script</p>
+<pre><code>var rtask = rbroker.discreteTask( {    
+ externalsource: regressionURL
+ // Additional Discrete Task Options...
+});</code></pre>
+</li>
+</ol>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>[params]</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> The parameter details for either:</p>
+<ol>
+<li><p>Repository-managed R script</p>
+<ul>
+<li><strong>filename</strong> – repository-managed script filename</li>
+<li><strong>directory</strong> - <span class="label label-default">optional</span> repository-managed 
+directory for scripts, defaults to root</li>
+<li><strong>author</strong> – <span class="label label-default">optional</span> the authors</li>
+<li><strong>version</strong> – <span class="label label-default">optional</span> the version</li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-repository-script-execute">Discrete Task Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>URL-addressable R script</p>
+<ul>
+<li><strong>externalsource</strong> - URL or file paths to external scripts</li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-repository-script-execute">Discrete Task Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#dtask" class="api-type">DiscreteTask</a></p>
+<p>A new instance of an <code>DiscreteTask</code>.</p>
+<hr>
+<h2 id="ptaskfactory" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">pooledTask</strong> (config) <span class="label label-success">static</span></p>
+<p>Create an instance of a <a href="#ptask" class="api-type">PooledTask</a> for an analytics Web 
+service based on either:</p>
+<ol>
+<li><p>Repository-managed R script</p>
+<pre><code>var rtask = rbroker.pooledTask({ 
+ filename: &#39;regression&#39;,
+ directory: &#39;demo&#39;,
+ author: &#39;george&#39;,
+ version: version
+ // Additional Pooled Task Options...
+});</code></pre>
+</li>
+<li><p>Arbitrary block of R code</p>
+<pre><code>var rtask = rbroker.pooledTask( {    
+ code: codeBlock
+ // Additional Pooled Task Options...
+});</code></pre>
+</li>
+<li><p>URL-addressable R script</p>
+<pre><code>var rtask = rbroker.pooledTask({ 
+  externalsource: regressionURL
+  // Additional Pooled Task Options...
+});</code></pre>
+</li>
+</ol>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>[params]</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> The parameter details for either:</p>
+<ol>
+<li><p>Repository-managed R script</p>
+<ul>
+<li><strong>filename</strong> – repository-managed script filename</li>
+<li><strong>directory</strong> - <span class="label label-default">optional</span> repository-managed 
+directory for the script, defaults to <em>root</em></li>
+<li><strong>author</strong> – the author</li>
+<li><strong>version</strong> – <span class="label label-default">optional</span> the <em>filename</em> version</li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-project-execute-script">Pooled Task Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Arbitrary block of R code</p>
+<ul>
+<li><strong>code</strong> - indicates the code that has been executed    </li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-project-execute-code">PooledTask Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>URL-addressable R script</p>
+<ul>
+<li><strong>externalsource</strong> - URL or file paths to external scripts</li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-project-execute-code">Pooled Task Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#ptask" class="api-type">PooledTask</a></p>
+<p>A new instance of a <code>PooledTask</code>.</p>
+<hr>
+<h2 id="bgtaskfactory" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">backgroundTask</strong> (config) <span class="label label-success">static</span></p>
+<p>Create an instance of a <a href="#bgtask" class="api-type">BackgroundTask</a> for an analytics 
+Web service based on either:</p>
+<ol>
+<li><p>Repository-managed R script</p>
+<pre><code>var rTask = rbroker.backgroundTask({
+  name: &#39;Sample Task&#39;,
+  descr: &#39;Sample description&#39;,
+  rscriptname: &#39;regression&#39;,
+  rscriptdirectory: &#39;demo&#39;,
+  rscriptauthor: &#39;george&#39;,
+  rscriptversion: version
+  // Additional Background Task Options...
+});</code></pre>
+</li>
+<li><p>Arbitrary block of R code</p>
+<pre><code>var rTask = rbroker.backgroundTask({
+  name: &#39;Sample Task&#39;,
+  descr: &#39;Sample description&#39;,
+  code: codeBlock
+  // Additional Background Task Options...
+});</code></pre>
+</li>
+<li><p>URL-addressable R script</p>
+<pre><code>var rTask = rbroker.backgroundTask({
+  name: &#39;Sample Task&#39;,
+  descr: &#39;Sample description&#39;,
+  externalsource: regressionURL
+  // Additional Background Task Options...
+});</code></pre>
+</li>
+</ol>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>[params]</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> The parameter details for either:</p>
+<ol>
+<li>Repository-managed R script<ul>
+<li><strong>name</strong> – job name</li>
+<li><strong>descr</strong> – <span class="label label-default">optional</span> job description</li>
+<li><strong>rscriptname</strong> – repository-managed script filename to execute on job</li>
+<li><strong>rscriptdirectory</strong> - <span class="label label-default">optional</span> repository-managed 
+directory for scripts, defaults to root</li>
+<li><strong>rscriptauthor</strong> – <span class="label label-default">optional</span> the author </li>
+<li><strong>rscriptversion</strong> – <span class="label label-default">optional</span> the version</li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-job-submit">Background Task Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Arbitrary block of R code<ul>
+<li><strong>name</strong> – job name</li>
+<li><strong>descr</strong> – <span class="label label-default">optional</span> job description</li>
+<li><strong>code</strong> – <span class="label label-default">optional</span> R code to execute on job    </li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-job-submit">Background Task Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>URL-addressable R script<ul>
+<li><strong>name</strong> – job name </li>
+<li><strong>descr</strong> – <span class="label label-default">optional</span> job description</li>
+<li><strong>externalsource</strong> – <span class="label label-default">optional</span> URL or file </li>
+<li>Additional <a href="https://microsoft.github.io/deployr-api-docs#r-job-submit">Background Task Options</a>:<ul>
+<li><em>Pre-Execution Parameters</em></li>
+<li><em>On-Execution Parameters</em></li>
+<li><em>Post-Execution Parameters</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#bgtask" class="api-type">BackgroundTask</a></p>
+<p>A new instance of a <code>BackgroundTask</code>.</p>
+<hr>
+<h1 id="rbroker" style="padding:0"></h1>
+
+<h1>RBroker</h1>
+
+<div class="well"><p>Represents a high-level programming model for building DeployR-enabled client 
+applications. By using <em>RBroker</em> an application developer can focus entirely on 
+integrating R Analytics, while offloading the complexity of managing client-side 
+API task queues and server-side R session lifecycles.</p>
+<p>The basic programming model for working with <em>RBroker</em> is as follows:</p>
+<ol>
+<li>Decide if the R Analytics tasks for your application should execute as:<ul>
+<li><strong>Discrete tasks:</strong> authentication optional, grid resources allocated at 
+runtime, results returned immediately, no persistence. Good for prototyping 
+and public facing production deployments.</li>
+<li><strong>Pooled tasks:</strong> authentication required, grid resources pre-allocated, 
+results returned immediately, optional persistence to repository. Good for 
+enterprise production deployments, consistent runtime, high-throughput 
+environments.</li>
+<li><strong>Background tasks:</strong> authentication required, grid resources allocated at 
+runtime, results persisted for later retrieval. Good for periodic, 
+scheduled or batch processing.</li>
+</ul>
+</li>
+<li>Use the factories defined in <a href="#global">rbroker</a> to create an appropriate 
+instance of <em>RBroker</em>.</li>
+<li>Define the R Analytics tasks for your application as one or more <em>RTask</em>.</li>
+<li>Submit your <em>RTask</em> to <em>RBroker</em> for execution.</li>
+<li>Integrate the results of your <em>RTask</em> found within<a href="#result" class="api-type">RTaskResult</a>.</li>
+</ol>
+</div>
+
+
+<h2 id="complete" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">complete</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>A success listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p>
+<ul>
+<li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li>
+<li><strong>result</strong> - The <em>RTask</em> result associated with this submission. </li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p>
+<p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p>
+<hr>
+<h2 id="error" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">error</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>A failure listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p>
+<ul>
+<li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li>
+<li><strong>err</strong> - The error associated with this submission. </li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p>
+<p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p>
+<hr>
+<h2 id="always" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">ensure</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>A convenience for always returning a result regardless if it is an error or a
+success for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function.</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p>
+<p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p>
+<hr>
+<h2 id="progress" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">progress</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>Runtime stats.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function.</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p>
+<p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p>
+<hr>
+<h2 id="idel" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">idel</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>A notification listener indicating that <code>this</code> <em>Rbroker</em> is still active and 
+there are currently no <em>RTasks</em> running or in the wait queue.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. </li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p>
+<p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p>
+<hr>
+<h2 id="submit" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">submit</strong> (rtask, priority) <span class="label label-">undefined</span></p>
+<p>Submit an <em>RTask</em> for execution under the control of <em>RBroker</em>. If <em>priority</em> is
+indicated, priority tasks are automatically moved to the front of the queue, 
+ahead of all standard tasks that are already pending execution by the broker.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>task</strong> <a href="#submit" class="api-type">RTask</a> The <em>RTask</em> associated with this submission. </li>
+<li><strong>priority</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a> <span class="label label-default">optional</span> Mark this 
+task as having priority.</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rtoken" class="api-type">RTaskToken</a></p>
+<p>The handle to an <em>RTask</em> live on an <em>RBroker</em>.</p>
+<hr>
+<h2 id="shutdown" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">shutdown</strong> () <span class="label label-primary">promise</span></p>
+<p>Release all client-side and server-side resources maintained by or on behalf of 
+an instance of <em>RBroker</em>.</p>
+<pre><code>aBroker.shutdown()
+   .then(function() {
+      // success
+   }, function(err) {
+      // error
+   });</code></pre>
+<p><strong>Returns:</strong> <a href="http://promisesaplus.com/" class="api-type" target="_blank">Promise</a></p>
+<p>A promise wrapping the resolution of either &quot;resolve&quot; or &quot;reject&quot; callback.</p>
+<hr>
+<h2 id="status" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">status</strong> () <span class="label label-">undefined</span></p>
+<p>Returns status indicating current <em>RTask</em> activity on RBroker.</p>
+<p>This call can be used to determine if an <em>RBroker</em> instance is idle which can be 
+particularly useful ahead of calls to <a href="#shutdown">shutdown()</a>.</p>
+<p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p>
+<p>Response objec properties:</p>
+<ul>
+<li><strong>pending</strong> - Queued tasks waiting to run.</li>
+<li><strong>executing</strong> - Currently running tasks.</li>
+<li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul>
+<p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p>
+<hr>
+<h2 id="flush" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">flush</strong> () <span class="label label-">undefined</span></p>
+<p>Flushes all pending <em>RTask</em> from queues maintained by <em>RBroker</em>. Flushing 
+<em>RTask</em> queues ensures that queued tasks will not be executed by <em>RBroker</em>.</p>
+<p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p>
+<p>Response objec properties:</p>
+<ul>
+<li><strong>pending</strong> - Queued tasks waiting to run.</li>
+<li><strong>executing</strong> - Currently running tasks.</li>
+<li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul>
+<p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p>
+<hr>
+<h2 id="refresh" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">refresh</strong> (config) <span class="label label-">undefined</span></p>
+<p>Refresh the configuration for <em>RBroker</em>.</p>
+<p><strong>Note</strong>, support for refresh is only available on the 
+<a href="#pbroker" class="api-type">PooledTaskBroker</a> runtime. In addition, only 
+<em>pool creation options</em> are processed on this call. All other RBroker_ 
+configuration options  are ignored.</p>
+<p>A refresh causes all workspace objects and directory files in the underlying 
+R sessions within the pool to be cleared before new workspace objects and/or 
+directory files are loaded per the new config options.</p>
+<p>Only an idle <em>RBroker</em> instance can be refreshed. </p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>[config]</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a> Startup options for a Pooled Task <em>RBroker</em>.</li>
+</ul>
+<hr>
+<h2 id="max" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">maxConcurrency</strong> () <span class="label label-">undefined</span></p>
+<p>Returns the task execution concurrency levels enforced for this instance of 
+<em>RBroker</em>.</p>
+<p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a></p>
+<p>The task execution concurrency levels enforced for this instance of <em>RBroker</em>.</p>
+<hr>
+<h1 id="dbroker" style="padding:0"></h1>
+
+<h1>DiscreteTaskBroker</h1>
+
+<p><span class="badge">Extends</span> <a href="#rbroker" class="api-type">RBroker</a></p>
+<div class="well"><p>The Discrete Task Runtime acquires DeployR grid resources per RTask on-demand.</p>
+</div>
+
+<p><p><strong style="color:#7694a7">complete</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A success listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p></p>
+<p><ul></p>
+<p><li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>result</strong> - The <em>RTask</em> result associated with this submission. </li>
+</ul>
+</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">error</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A failure listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p></p>
+<p><ul></p>
+<p><li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>err</strong> - The error associated with this submission. </li>
+</ul>
+</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">ensure</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A convenience for always returning a result regardless if it is an error or a
+success for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function.</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">idel</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A notification listener indicating that <code>this</code> <em>Rbroker</em> is still active and 
+there are currently no <em>RTasks</em> running or in the wait queue.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. </li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">submit</strong> (rtask, priority) <span class="label label-">undefined</span></p></p>
+<p><p>Submit an <em>RTask</em> for execution under the control of <em>RBroker</em>. If <em>priority</em> is
+indicated, priority tasks are automatically moved to the front of the queue, 
+ahead of all standard tasks that are already pending execution by the broker.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>task</strong> <a href="#submit" class="api-type">RTask</a> The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>priority</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a> <span class="label label-default">optional</span> Mark this 
+task as having priority.</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rtoken" class="api-type">RTaskToken</a></p></p>
+<p><p>The handle to an <em>RTask</em> live on an <em>RBroker</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">shutdown</strong> () <span class="label label-primary">promise</span></p></p>
+<p><p>Release all client-side and server-side resources maintained by or on behalf of 
+an instance of <em>RBroker</em>.</p></p>
+<p><pre><code>aBroker.shutdown()
+   .then(function() {
+      // success
+   }, function(err) {
+      // error
+   });</code></pre></p>
+<p><p><strong>Returns:</strong> <a href="http://promisesaplus.com/" class="api-type" target="_blank">Promise</a></p></p>
+<p><p>A promise wrapping the resolution of either &quot;resolve&quot; or &quot;reject&quot; callback.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">status</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Returns status indicating current <em>RTask</em> activity on RBroker.</p></p>
+<p><p>This call can be used to determine if an <em>RBroker</em> instance is idle which can be 
+particularly useful ahead of calls to <a href="#shutdown">shutdown()</a>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p></p>
+<p><p>Response objec properties:</p></p>
+<p><ul></p>
+<p><li><strong>pending</strong> - Queued tasks waiting to run.</li></p>
+<p><li><strong>executing</strong> - Currently running tasks.</li></p>
+<p><li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul></p>
+<p><p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">flush</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Flushes all pending <em>RTask</em> from queues maintained by <em>RBroker</em>. Flushing 
+<em>RTask</em> queues ensures that queued tasks will not be executed by <em>RBroker</em>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p></p>
+<p><p>Response objec properties:</p></p>
+<p><ul></p>
+<p><li><strong>pending</strong> - Queued tasks waiting to run.</li></p>
+<p><li><strong>executing</strong> - Currently running tasks.</li></p>
+<p><li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul></p>
+<p><p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">maxConcurrency</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Returns the task execution concurrency levels enforced for this instance of 
+<em>RBroker</em>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a></p></p>
+<p><p>The task execution concurrency levels enforced for this instance of <em>RBroker</em>.</p></p>
+<hr>
+
+
+<h1 id="pbroker" style="padding:0"></h1>
+
+<h1>PooledTaskBroker</h1>
+
+<p><span class="badge">Extends</span> <a href="#rbroker" class="api-type">RBroker</a></p>
+<div class="well"><p>The Pooled Task Runtime acquires a dedicated pool of DeployR grid resources at 
+startup.</p>
+</div>
+
+<p><p><strong style="color:#7694a7">complete</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A success listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p></p>
+<p><ul></p>
+<p><li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>result</strong> - The <em>RTask</em> result associated with this submission. </li>
+</ul>
+</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">error</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A failure listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p></p>
+<p><ul></p>
+<p><li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>err</strong> - The error associated with this submission. </li>
+</ul>
+</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">ensure</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A convenience for always returning a result regardless if it is an error or a
+success for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function.</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">idel</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A notification listener indicating that <code>this</code> <em>Rbroker</em> is still active and 
+there are currently no <em>RTasks</em> running or in the wait queue.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. </li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">submit</strong> (rtask, priority) <span class="label label-">undefined</span></p></p>
+<p><p>Submit an <em>RTask</em> for execution under the control of <em>RBroker</em>. If <em>priority</em> is
+indicated, priority tasks are automatically moved to the front of the queue, 
+ahead of all standard tasks that are already pending execution by the broker.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>task</strong> <a href="#submit" class="api-type">RTask</a> The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>priority</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a> <span class="label label-default">optional</span> Mark this 
+task as having priority.</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rtoken" class="api-type">RTaskToken</a></p></p>
+<p><p>The handle to an <em>RTask</em> live on an <em>RBroker</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">shutdown</strong> () <span class="label label-primary">promise</span></p></p>
+<p><p>Release all client-side and server-side resources maintained by or on behalf of 
+an instance of <em>RBroker</em>.</p></p>
+<p><pre><code>aBroker.shutdown()
+   .then(function() {
+      // success
+   }, function(err) {
+      // error
+   });</code></pre></p>
+<p><p><strong>Returns:</strong> <a href="http://promisesaplus.com/" class="api-type" target="_blank">Promise</a></p></p>
+<p><p>A promise wrapping the resolution of either &quot;resolve&quot; or &quot;reject&quot; callback.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">status</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Returns status indicating current <em>RTask</em> activity on RBroker.</p></p>
+<p><p>This call can be used to determine if an <em>RBroker</em> instance is idle which can be 
+particularly useful ahead of calls to <a href="#shutdown">shutdown()</a>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p></p>
+<p><p>Response objec properties:</p></p>
+<p><ul></p>
+<p><li><strong>pending</strong> - Queued tasks waiting to run.</li></p>
+<p><li><strong>executing</strong> - Currently running tasks.</li></p>
+<p><li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul></p>
+<p><p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">flush</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Flushes all pending <em>RTask</em> from queues maintained by <em>RBroker</em>. Flushing 
+<em>RTask</em> queues ensures that queued tasks will not be executed by <em>RBroker</em>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p></p>
+<p><p>Response objec properties:</p></p>
+<p><ul></p>
+<p><li><strong>pending</strong> - Queued tasks waiting to run.</li></p>
+<p><li><strong>executing</strong> - Currently running tasks.</li></p>
+<p><li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul></p>
+<p><p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p></p>
+<hr>
+
+
+
+
+<p><p><strong style="color:#7694a7">maxConcurrency</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Returns the task execution concurrency levels enforced for this instance of 
+<em>RBroker</em>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a></p></p>
+<p><p>The task execution concurrency levels enforced for this instance of <em>RBroker</em>.</p></p>
+<hr>
+
+
+<h1 id="bgbroker" style="padding:0"></h1>
+
+<h1>BackgroundTaskBroker</h1>
+
+<p><span class="badge">Extends</span> <a href="#rbroker" class="api-type">RBroker</a></p>
+<div class="well"><p>The Background Task Runtime acquires DeployR grid resources per RTask based on 
+the server-side management of asynchronous grid resources.</p>
+</div>
+
+<p><p><strong style="color:#7694a7">complete</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A success listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p></p>
+<p><ul></p>
+<p><li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>result</strong> - The <em>RTask</em> result associated with this submission. </li>
+</ul>
+</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">error</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A failure listener for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies two argument:</p></p>
+<p><ul></p>
+<p><li><strong>task</strong> - The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>err</strong> - The error associated with this submission. </li>
+</ul>
+</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">ensure</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A convenience for always returning a result regardless if it is an error or a
+success for all tasks submitted on behalf of <code>this</code> <em>RBroker</em>.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function.</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">idel</strong> (λ) <span class="label label-info">chainable</span></p></p>
+<p><p>A notification listener indicating that <code>this</code> <em>Rbroker</em> is still active and 
+there are currently no <em>RTasks</em> running or in the wait queue.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. </li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rbroker" class="api-type">RBroker</a></p></p>
+<p><p>The refrence to <code>this</code> <em>RBroker</em> used for chaining. </p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">submit</strong> (rtask, priority) <span class="label label-">undefined</span></p></p>
+<p><p>Submit an <em>RTask</em> for execution under the control of <em>RBroker</em>. If <em>priority</em> is
+indicated, priority tasks are automatically moved to the front of the queue, 
+ahead of all standard tasks that are already pending execution by the broker.</p></p>
+<p><p><strong>Parameters:</strong></p></p>
+<p><ul></p>
+<p><li><strong>task</strong> <a href="#submit" class="api-type">RTask</a> The <em>RTask</em> associated with this submission. </li></p>
+<p><li><strong>priority</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a> <span class="label label-default">optional</span> Mark this 
+task as having priority.</li>
+</ul></p>
+<p><p><strong>Returns:</strong> <a href="#rtoken" class="api-type">RTaskToken</a></p></p>
+<p><p>The handle to an <em>RTask</em> live on an <em>RBroker</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">shutdown</strong> () <span class="label label-primary">promise</span></p></p>
+<p><p>Release all client-side and server-side resources maintained by or on behalf of 
+an instance of <em>RBroker</em>.</p></p>
+<p><pre><code>aBroker.shutdown()
+   .then(function() {
+      // success
+   }, function(err) {
+      // error
+   });</code></pre></p>
+<p><p><strong>Returns:</strong> <a href="http://promisesaplus.com/" class="api-type" target="_blank">Promise</a></p></p>
+<p><p>A promise wrapping the resolution of either &quot;resolve&quot; or &quot;reject&quot; callback.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">status</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Returns status indicating current <em>RTask</em> activity on RBroker.</p></p>
+<p><p>This call can be used to determine if an <em>RBroker</em> instance is idle which can be 
+particularly useful ahead of calls to <a href="#shutdown">shutdown()</a>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p></p>
+<p><p>Response objec properties:</p></p>
+<p><ul></p>
+<p><li><strong>pending</strong> - Queued tasks waiting to run.</li></p>
+<p><li><strong>executing</strong> - Currently running tasks.</li></p>
+<p><li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul></p>
+<p><p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">flush</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Flushes all pending <em>RTask</em> from queues maintained by <em>RBroker</em>. Flushing 
+<em>RTask</em> queues ensures that queued tasks will not be executed by <em>RBroker</em>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="api-type" target="_blank">Object</a></p></p>
+<p><p>Response objec properties:</p></p>
+<p><ul></p>
+<p><li><strong>pending</strong> - Queued tasks waiting to run.</li></p>
+<p><li><strong>executing</strong> - Currently running tasks.</li></p>
+<p><li><strong>idle</strong> - Convenience for an application if individual pending and executing 
+task counts are not relevant in <a href="#shutdown">shutdown()</a> decisions.</li>
+</ul></p>
+<p><p>Object literal containing <em>RBroker</em> status indicating the number of currently 
+queued and executing <em>RTask</em>.</p></p>
+<hr>
+
+
+<p><p><strong style="color:#7694a7">maxConcurrency</strong> () <span class="label label-">undefined</span></p></p>
+<p><p>Returns the task execution concurrency levels enforced for this instance of 
+<em>RBroker</em>.</p></p>
+<p><p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a></p></p>
+<p><p>The task execution concurrency levels enforced for this instance of <em>RBroker</em>.</p></p>
+<hr>
+
+
+<h1 id="dtask" style="padding:0"></h1>
+
+<h1>DiscreteTask</h1>
+
+<div class="well"><p>Represents any R Analytics discrete task for execution on an
+<a href="#rbroker" class="api-type">RBroker</a></p>
+</div>
+
+<p><strong>No</strong> public methods supported.</p>
+<hr>
+<h1 id="ptask" style="padding:0"></h1>
+
+<h1>PooledTask</h1>
+
+<div class="well"><p>Represents any R Analytics pooled task for execution on an
+<a href="#rbroker" class="api-type">RBroker</a></p>
+</div>
+
+<p><strong>No</strong> public methods supported.</p>
+<hr>
+<h1 id="bgtask" style="padding:0"></h1>
+
+<h1>BackgroundTask</h1>
+
+<div class="well"><p>Represents any R Analytics background task for execution on an
+<a href="#rbroker" class="api-type">RBroker</a></p>
+</div>
+
+<p><strong>No</strong> public methods supported.</p>
+<hr>
+<h1 id="rtoken" style="padding:0"></h1>
+
+<h1>RTaskToken</h1>
+
+<div class="well"><p>Represents a handle to an <em>RTask</em> live on an<a href="#rbroker" class="api-type">RBroker</a>.</p>
+</div>
+
+<hr>
+<h2 id="task-complete" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">complete</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>A success listener for a single task submission. </p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies one argument:</p>
+<ul>
+<li><strong>result</strong> - The <em>RTask</em> result associated with this submission. </li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rtoken" class="api-type">RTaskToken</a></p>
+<p>The refrence to <code>this</code> token on a task submission for chaining. </p>
+<hr>
+<h2 id="task-error" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">error</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>A failure listener for a single task submission. </p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. Supplies one argument:</p>
+<ul>
+<li><strong>err</strong> - The error associated with this submission. </li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rtoken" class="api-type">RTaskToken</a></p>
+<p>The refrence to <code>this</code> token on a task submission for chaining. </p>
+<hr>
+<h2 id="task-always" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">ensure</strong> (λ) <span class="label label-info">chainable</span></p>
+<p>A convenience for always returning a result regardless if it is an error or a
+success for a single task submission. </p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>λ</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="api-type" target="_blank">Function</a> The callback function. </li>
+</ul>
+<p><strong>Returns:</strong> <a href="#rtoken" class="api-type">RTaskToken</a></p>
+<p>The refrence to <code>this</code> token on a task submission for chaining. </p>
+<hr>
+<h2 id="task-cancel" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">cancel</strong> (interrupt) <span class="label label-">undefined</span></p>
+<p>Terminates <code>this</code> the running task. </p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>interrupt</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a> Permission to interrupt task if it is 
+running.</li>
+</ul>
+<hr>
+<h2 id="task-cancelled" style="padding:0"></h2>
+
+<p><strong style="color:#7694a7">isCancelled</strong> () <span class="label label-">undefined</span></p>
+<p>Defines if <code>this</code> task is currently cancelled. </p>
+<p><strong>Returns:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a></p>
+<p>If <code>this</code> task is currently cancelled.</p>
+<hr>
+<h1 id="rresult" style="padding:0"></h1>
+
+<h1>RTaskResult</h1>
+
+<div class="well"><p>Represents a handle to the result generated by an <em>RTask</em>.</p>
+</div>
+
+<p><strong>Properties:</strong></p>
+<p><strong style="color:#7694a7">id</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="api-type" target="_blank">String</a></p>
+<p>Task DeployR identifier. Maps to a project execution or job identifier.</p>
+<p><strong style="color:#7694a7">type</strong><a href="#rresult" class="api-type">RTaskType</a></p>
+<p>Task type </p>
+<p><strong style="color:#7694a7">success</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a></p>
+<p>Task success indicator.</p>
+<p><strong style="color:#7694a7">timeOnCode</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="api-type" target="_blank">Number</a></p>
+<p>Task time spent executing R code on server.</p>
+<p><strong style="color:#7694a7">timeOnServer</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="api-type" target="_blank">Number</a></p>
+<p>Task time spent being processed on server.</p>
+<p><strong style="color:#7694a7">timeOnCall</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="api-type" target="_blank">Number</a></p>
+<p>Task time spent on call to server.</p>
+<p><strong style="color:#7694a7">failure</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="api-type" target="_blank">String</a></p>
+<p>Task failure indicator.</p>
+<p><strong style="color:#7694a7">interrupted</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="api-type" target="_blank">Boolean</a></p>
+<p>Task interrupted indicator.</p>
+<p><strong style="color:#7694a7">generatedConsole</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="api-type" target="_blank">String</a></p>
+<p>Task R session generated console output.</p>
+<p><strong style="color:#7694a7">generatedPlots</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="api-type" target="_blank">Array</a></p>
+<p>Task R session graphics device generated plots.</p>
+<p><strong style="color:#7694a7">generatedFiles</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="api-type" target="_blank">Array</a></p>
+<p>Task R session working directory generated files.</p>
+<p><strong style="color:#7694a7">generatedObjects</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="api-type" target="_blank">Array</a></p>
+<p>Task R session workspace generated objects.</p>
+<p><strong style="color:#7694a7">storedFiles</strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="api-type" target="_blank">Array</a></p>
+<p>Task generated files stored to DeployR repository.</p>
+</div></div></div>
+        </div>    
+      </div>
+      <div class="push"></div>
+    </div>
+
+    <!-- Footer
+    ================================================== -->
+
+    <footer class="footer bs-footer" role="contentinfo">
+  <div class="container">
+    <div class="row footer">
+      <div class="col-sm-3">       
+      </div>
+      <div class="col-sm-3">       
+      </div>
+      <div class="col-sm-3">        
+      </div>
+      <div class="col-sm-3">        
+      </div>    
+    </div>
+  </div>          
+</footer> 
+
+    
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/modernizr.js"></script>
+<script src="./assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- TOC
+================================================= -->
+<script>
+  // back to top
+  setTimeout(function () {
+     var $sideBar = $('.bs-sidebar');
+     if (!$sideBar) { return; }
+     $sideBar.affix({
+     offset: {
+     top: function () {
+        var offsetTop = $sideBar.offset().top
+        var sideBarMargin = parseInt($sideBar.children(0).css('margin-top'), 10)
+        var navOuterHeight = $('.bs-docs-nav').height()
+        return (this.top = offsetTop - navOuterHeight - sideBarMargin)
+      }
+      , bottom: function () {
+        return (this.bottom = $('.bs-footer').outerHeight(true))
+      }
+    }
+    })
+  }, 100)
+</script>
+
+<script>
+  $('.tab-content div').each(function( index ) {
+    if(index === 0) { $(this).addClass('active'); }
+  });
+
+  $('.code-tabs a').click(function (e) {
+  });
+
+</script>
+
+     
+  </body>
 </html>
