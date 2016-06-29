@@ -19,7 +19,7 @@
         "type": "git",
         "url": "git://github.com/deployr/js-rbroker-framework.git"
     },
-    "homepage": "http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc",
+    "homepage": "http://go.microsoft.com/fwlink/?LinkID=698842",
     "scripts": {
         "start": "gulp start",
         "build": "gulp",
@@ -27,23 +27,23 @@
         "test-browser": "browserify test/specs/*.js | testlingify"
     },
     "devDependencies": {
-        "browserify": "^9.0.3",
-        "gulp": "^3.0.0",
-        "gulp-connect": "^2.2.0",
-        "gulp-header": "^1.2.2",
-        "gulp-jshint": "^2.0.0",
-        "gulp-livereload": "^3.8.0",
-        "gulp-plumber": "^0.6.6",
+        "browserify": "^13.0.1",
+        "gulp": "^3.9.1",
+        "gulp-connect": "^4.1.0",
+        "gulp-header": "^1.8.7",
+        "gulp-jshint": "^2.0.1",
+        "gulp-livereload": "^3.8.1",
+        "gulp-plumber": "^1.1.0",
         "gulp-rename": "^1.2.2",
-        "gulp-uglify": "^1.2.0",
-        "gulp-util": "^3.0.4",
-        "tape": "^3.5.0",
-        "vinyl-source-stream": "^1.0.0",
+        "gulp-uglify": "^1.5.4",
+        "gulp-util": "^3.0.7",
+        "tape": "^4.6.0",
+        "vinyl-source-stream": "^1.1.0",
         "when": "^3.7.2"
     },
     "dependencies": {
         "d.js": "^0.6.0",
-        "deployr": "^7.4.1",
+        "deployr": "8.0.0",
         "enum": "^0.2.6",
         "merge": "^1.1.3",
         "selfish": "^0.3.2"
@@ -52,8 +52,8 @@
     "engines": {
         "node": ">= 0.10.0"
     },
-    "license": "Apache 2.0 License",
+    "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/deployr/js-rbroker-framework/issues"
+        "url": "https://github.com/microsoft/js-rbroker-framework/issues"
     }
 }
