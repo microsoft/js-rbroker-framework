@@ -52,7 +52,7 @@ var brokerConfig = {
    logging: false,
    // --- pool options ---
    // For all `pool` option parameters:
-   // @see http://deployr.revolutionanalytics.com/documents/dev/api-doc/guide/workingprojects.html#projectpool
+   // @see https://microsoft.github.io/deployr-api-docs/#r-project-pool
    pool: {
       preloadobjectname: config.constants.TUTORIAL_INSURANCE_MODEL,
       preloadobjectauthor: config.constants.TUTORIAL_REPO_OWNER,

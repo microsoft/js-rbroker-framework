@@ -187,7 +187,6 @@ test('should successfully execute with `Pooled Broker Config` using custom pool 
             host: fixtures.endpoint,
             credentials: fixtures.credentials,
             maxConcurrentTaskLimit: MAX_CONCURRENCY,
-            releaseGridResources: true,
             pool: fixtures.good()
         };
 
@@ -197,6 +196,8 @@ test('should successfully execute with `Pooled Broker Config` using custom pool 
             t.ok(rTaskResult.success, 'rTaskResult.success');
         })
         .error(function(err) {
+            console.log(err);
+            console.log(err.get('error'));
             var msg = err.task ? 'pBroker.submit(rTask) failed: ' :
                 'pBroker failed: ';
             t.notOk(true, msg + err.get('error'));
@@ -215,6 +216,7 @@ test('should successfully execute with `Pooled Broker Config` using custom pool 
         author: 'testuser'
     }));
 });
+
 
 /**
  * Test PooledBrokerConfig using "bad" custom pool creation options that can be 

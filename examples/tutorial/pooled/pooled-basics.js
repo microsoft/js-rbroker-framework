@@ -34,7 +34,7 @@ var brokerConfig = {
     logging: false,
     // --- pool options ---
     // For all `pool` option parameters:
-    // @see http://deployr.revolutionanalytics.com/documents/dev/api-doc/guide/workingprojects html#projectpool    
+    // @see https://microsoft.github.io/deployr-api-docs/#r-project-pool  
     pool: { /* optional pooled parameters go here... */ }
 };
 
