@@ -1,8 +1,6 @@
 JavaScript RBroker Framework for DeployR
 ========================================
 
-[![Build Status](http://nicrdepstaging.cloudapp.net:8080/buildStatus/icon?job=js-rbroker-framework)](http://nicrdepstaging.cloudapp.net:8080/job/js-rbroker-framework/)
-
 The JavaScript RBroker Framework provides a simple yet powerful API that 
 supports the rapid integration of R Analytics inside any browser or Node.js 
 based application. Simply define an _RTask_, submit your task to an instance of 
@@ -12,8 +10,8 @@ Links
 -----
 
   * [Download](#downloading)
-  * [Tutorial](http://deployr.revolutionanalytics.com/documents/dev/rbroker/)
-  * [API Documentation](http://deployr.revolutionanalytics.com/documents/dev/rbroker-jsdoc)    
+  * [Tutorial](https://msdn.microsoft.com/en-us/microsoft-r/deployr-rbroker-framework)
+  * [API Documentation](http://microsoft.github.io/js-rbroker-framework/)    
   * [Simple examples](#examples)
   * [Gulp, for building](#building)
   * [Tests](#tests)
@@ -26,9 +24,9 @@ There are a few diffrent ways to obtain the library depending on your
 environment and intended usage:
 
 - `$ npm install rbroker` dependent on [Node.js](http://nodejs.org/download/)
-- `$ git clone https://github.com/deployr/js-rbroker-framework.git`
-- [Download Zip](https://github.com/deployr/js-rbroker-framework/archive/master.zip)
-- Download specific [release](https://github.com/deployr/js-rbroker-framework/releases)
+- `$ git clone https://github.com/microsoft/js-rbroker-framework.git`
+- [Download Zip](https://github.com/microsoft/js-rbroker-framework/archive/master.zip)
+- Download specific [release](https://github.com/microsoft/js-rbroker-framework/releases)
 
 Environments
 ============
@@ -220,7 +218,7 @@ Tests
 =====
 
 The DeployR JavaScript RBroker Framework also ships with a set of unit tests. 
-See [here](https://github.com/deployr/js-rbroker-framework/tree/master/test) for
+See [here](https://github.com/microsoft/js-rbroker-framework/tree/master/test) for
 details.
 
 License
