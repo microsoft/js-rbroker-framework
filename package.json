@@ -1,6 +1,6 @@
 {
     "name": "rbroker",
-    "version": "8.0.0",
+    "version": "8.0.5",
     "description": "JavaScript RBroker Framework for DeployR",
     "keywords": [
         "deployr",
@@ -17,7 +17,7 @@
     }],
     "repository": {
         "type": "git",
-        "url": "git://github.com/deployr/js-rbroker-framework.git"
+        "url": "git://github.com/microsoft/js-rbroker-framework.git"
     },
     "homepage": "http://go.microsoft.com/fwlink/?LinkID=698842",
     "scripts": {
@@ -43,7 +43,7 @@
     },
     "dependencies": {
         "d.js": "^0.6.0",
-        "deployr": "8.0.0",
+        "deployr": "8.0.5",
         "enum": "^0.2.6",
         "merge": "^1.1.3",
         "selfish": "^0.3.2"
