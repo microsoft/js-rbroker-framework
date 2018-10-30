@@ -20,7 +20,7 @@ Links
 Downloading
 ============
 
-There are a few diffrent ways to obtain the library depending on your 
+There are a few different ways to obtain the library depending on your 
 environment and intended usage:
 
 - `$ npm install rbroker` dependent on [Node.js](http://nodejs.org/download/)
@@ -34,7 +34,7 @@ Environments
 - Browser and Node.js
 
 We recommend you [download and install](http://nodejs.org/download/) Node.js.
-It is __not__ a requirement for the browser however using the JavaScript RBroker
+It is __not__ a requirement for the browser; however, using the JavaScript RBroker
 Framework from within a server or from the command line in addition to the 
 browser can be powerful!
 
@@ -119,7 +119,7 @@ default within the DeployR repository within the tutorial-rbroker directory
 owned by testuser.
 
 However, if for any reason your DeployR repository does not contain
-these fiels you can add them using the DeployR Repository Manager as
+these files, you can add them using the DeployR Repository Manager as
 follows:
 
 1. Log in as testuser into the Repository Manager
@@ -163,7 +163,7 @@ embedded web server if you have [Node.js](http://nodejs.org/download/) installed
 
 `$ npm start`
 
-Open your browser to _http://localhost:8080_ and select a example 
+Open your browser to _http://localhost:8080_ and select an example 
 `.html` file to run. All examples simply print to stdout viewable from your 
 browser debug console.
 
